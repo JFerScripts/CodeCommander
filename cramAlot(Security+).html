@@ -1,0 +1,2908 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      font-family: "Arial", sans-serif;
+    }
+
+    body {
+      padding: 0;
+      margin: 0;
+      display: flex;
+      width: 100vw;
+      height: 100vh;
+      justify-content: center;
+      align-items: center;
+      background-color: black;
+    }
+    p {
+      padding: 2px;
+    }
+    .form {
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      font-weight: bold;
+    }
+    .table {
+      height: 100px;
+      width: 650px;
+      justify-content: center;
+      align-items: center;
+    }
+    .head1 {
+      color: white;
+      position: absolute;
+      top: -10px;
+      text-align: center;
+      font-size: 90px;
+      opacity: 0.5;
+      font-weight: bold;
+      text-decoration: none;
+      font-family: : "Times New Roman", serif;
+    }
+    .container {
+      background-color: #576675;
+      border: 1px solid white;
+      border-radius: 5px;
+      box-shadow: 5px 5px 10px black;
+      color: white;
+      text-shadow: 1px 1px 2px black;
+      font-weight: bold;
+      text-align: center;
+      padding-left: 20px;
+      padding-right: 20px;
+      padding-bottom: 10px;
+      padding-top: 5px;
+      height: auto;
+      width: 700px;
+      max-width: 80%;
+      justify-content: center;
+      opacity: 0.8;
+    }
+
+    .btn-grid {
+      display: grid;
+      grid-template-column: repeat(2, auto);
+      gap: 10px;
+      margin: 20px 0;
+      padding: 20px;
+    }
+    .btn {
+      border: 1px solid black, 100%, 30%);
+      background-color: #ecf2f9;
+      text-align: left;
+      padding: 5px 10px;
+      color: black;
+      font-weight: bold;
+      outline: none;
+      opacity: 0.6;
+    }
+    .btn:hover {
+      border-color: black;
+      opacity: 0.3;
+    }
+    .start-btn, .next-btn {
+      height: 60px;
+      width: 150px;
+      color: black;
+      font-size: 1.5rem;
+      font-weight: bold;
+      text-align: center;
+      padding: 10px 20px;
+      background-color: #ecf2f9;
+      opacity: 0.6;
+    }
+    .controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .hide {
+      display: none;
+    }
+    .win {
+      text-align: center;
+      font-weight: bold;
+      font-size: 5rem;
+      color: white;
+    }
+    .fail {
+      text-align: center;
+      font-weight: bold;
+      font-size: 5rem;
+      color: white;
+    }
+    .timed {
+      text-align: center;
+      font-weight: bold;
+      font-size: 1.5rem;
+      color: white;
+    }
+
+    .green {
+      border: 1px solid black, 100%, 30%);
+      background-color: #ecf2f9;
+      text-align: left;
+      padding: 5px 10px;
+      color: green;
+      font-weight: bold;
+      outline: none;
+      opacity: 0.6;
+      pointer-events: none;
+      cursor: default;
+    }
+
+    </style>
+
+    <title>cramAlot(Security+)</title>
+  </head>
+  <body>
+    <a class="head1" href="./cramAlot(Security+).html">cramAlot(Security +)</a>
+    <div class="container">
+      <div id="start-form" class="form">
+        <p>Welcome to cramAlot()! It's the best study buddy you'll ever
+           have. Sit back, relax, drink a bang, eat some string cheese, and get
+           your study on!</p><p>The material has been split up into digestible sections of 50 questions...lol.
+           Remember, repetition is the mother of learning. So, run through these as many
+           times as you need to. Also, if you decide you want to return here at any time,
+           just click the logo and it will bring you back. Go ahead and click a section below to get started.</p>
+      <form>
+        <table class="table">
+          <tr>
+            <td>
+          <p>Please select question section</p>
+          <input type="radio" id="sec1" name="section" value="sec1" checked>
+          <label for="sec1"> Section 1</label><br>
+          <input type="radio" id="sec2" name="section" value="sec2">
+          <label for="sec2"> Section 2</label><br>
+          <input type="radio" id="sec3" name="section" value="sec3">
+          <label for="sec3"> Section 3</label><br>
+          <input type="radio" id="sec4" name="section" value="sec4">
+          <label for="sec4"> Section 4</label>
+      </form>
+            </td>
+            <td>
+      <form id="form" class="form">
+          <p>Please select question order</p>
+          <input type="radio" id="seq" name="order" value="sequential" checked>
+          <label for="sequential"> Sequential</label><br>
+          <input type="radio" id="rev" name="order" value="reverse">
+          <label for="reverse"> Reverse</label><br>
+          <input type="radio" id="rando" name="order" value="random">
+          <label for="random"> Random</label>
+      </form>
+            </td>
+          </tr>
+        </table>
+    </div>
+      <h1 id="ques" class="hide">Time</h1>
+      <div id="timek" class="timed hide">Time</div>
+      <div id="question-container" class="hide">
+
+        <div id="question">Question</div>
+
+        <div id="answer-buttons" class="btn-grid">
+          <button class="btn">Answer 1</button>
+          <button class="btn">Answer 2</button>
+          <button class="btn">Answer 3</button>
+          <button class="btn">Answer 4</button>
+        </div>
+      </div>
+
+    <div id="wronga" class="fail hide">Wrong Answer!</div>
+    <div id="timeup" class="fail hide">Times Up!</div>
+    <div id="finish" class="win hide">Good Job!</div>
+
+    <div class="controls">
+
+      <button id="restart-btn" class="start-btn btn hide">Restart</button>
+      <button id="start-btn" class="start-btn btn">Start</button>
+      <button id="next-btn" class="next-btn btn hide">Next</button>
+    </div>
+    <script>
+    const startButton = document.getElementById('start-btn')
+    const restartButton = document.getElementById('restart-btn')
+    const nextButton = document.getElementById('next-btn')
+    const questionContainerElement = document.getElementById
+    ('question-container')
+    const startForm = document.getElementById('start-form')
+    const questionElement = document.getElementById('question')
+    const answerButtonsElement = document.getElementById('answer-buttons')
+    const wrongAnswer = document.getElementById('wronga')
+    const goodJob = document.getElementById('finish')
+    const timeKeeper = document.getElementById('timek')
+    const questionNum = document.getElementById('ques')
+    let secOne = document.getElementById("sec1")
+    let secTwo = document.getElementById("sec2")
+    let secThree = document.getElementById("sec3")
+    let secFour = document.getElementById("sec4")
+    let shuffledQuestions, currentQuestion
+    let time
+    let question
+
+
+    restartButton.addEventListener('click', restartGame)
+    startButton.addEventListener('click', () => {
+      startForm.classList.add('hide')
+      console.log(questions.length)
+      if (secOne.checked){
+        question = questions.slice(0, 50)
+      }
+      if (secTwo.checked){
+        question = questions.slice(50, 100)
+      }
+      if (secThree.checked){
+        question = questions.slice(100, 150)
+      }
+      if (secFour.checked){
+        question = questions.slice(150, 200)
+      }
+      console.log(question.length)
+      startGame()
+    })
+    nextButton.addEventListener('click', () => {
+      currentQuestionIndex++
+      setNextQuestion()
+    })
+
+
+    function startGame() {
+      questionContainerElement.classList.remove('hide')
+      questionNumb = 0
+      questionNum.classList.remove('hide')
+      form.classList.add('hide')
+      startButton.classList.add('hide')
+      wrongAnswer.classList.add('hide')
+      goodJob.classList.add('hide')
+      let reverse = document.getElementById("rev")
+      let random = document.getElementById("rando")
+        if (random.checked){
+          console.log('rand')
+          shuffledQuestions = question.sort(() => Math.random() - .5)
+        } else if (reverse.checked){
+          console.log('rev')
+          shuffledQuestions = question.reverse()
+        } else {
+          shuffledQuestions = question.sort()
+        }
+      currentQuestionIndex = 0
+      setNextQuestion()
+    }
+
+    function restartGame() {
+      questionContainerElement.classList.remove('hide')
+      questionNumb = 0
+      startForm.classList.add('hide')
+      restartButton.classList.add('hide')
+      wrongAnswer.classList.add('hide')
+      goodJob.classList.add('hide')
+      currentQuestionIndex = 0
+      setNextQuestion()
+    }
+
+    function setNextQuestion() {
+      questionNumb++
+      resetState()
+      showQuestion(shuffledQuestions[currentQuestionIndex])
+    }
+
+    function showQuestion(question) {
+      questionNum.innerText = "Question " + questionNumb
+      var timeC = 59
+      time = setInterval(timer, 1000)
+      timeKeeper.classList.remove('hide')
+      timeKeeper.innerText = "Time: 60"
+      function timer() {
+        if (timeC > 0){
+          timeKeeper.innerText = "Time: " + timeC
+          timeC--
+        } else {
+          clearInterval(time)
+          timeKeeper.classList.add('hide')
+          Array.from(answerButtonsElement.children).forEach(button => {
+            changeColor(button, button.dataset.correct)
+          })
+          answerFail()
+        }
+      }
+      questionElement.innerText = question.question
+      question.answers.forEach(answer => {
+        const button = document.createElement('button')
+        button.innerText = answer.text
+        button.classList.add('btn')
+        if (answer.correct) {
+          button.dataset.correct = answer.correct
+        }
+        button.addEventListener('click', selectAnswer)
+        answerButtonsElement.appendChild(button)
+      })
+    }
+
+
+    function resetState() {
+      nextButton.classList.add('hide')
+      while (answerButtonsElement.firstChild) {
+        answerButtonsElement.removeChild
+        (answerButtonsElement.firstChild)
+      }
+    }
+    function answerFail() {
+      restartButton.classList.remove('hide')
+    }
+
+    function answerWin() {
+      resetState()
+      questionContainerElement.classList.add('hide')
+      goodJob.classList.remove('hide')
+      restartButton.classList.remove('hide')
+    }
+
+    function selectAnswer(e) {
+      clearInterval(time)
+      const selectedButton = e.target
+      let correct = selectedButton.dataset.correct
+      console.log(correct)
+      Array.from(answerButtonsElement.children).forEach(button => {
+        changeColor(button, button.dataset.correct)
+      })
+      if (
+          (correct &&
+          shuffledQuestions.length > currentQuestionIndex + 1)
+        ){
+        console.log('cor1')
+        timeKeeper.classList.add('hide')
+        nextButton.classList.remove('hide')
+        } else if (
+        (correct &&
+        shuffledQuestions.length <= currentQuestionIndex + 1)
+        ) {
+        timeKeeper.classList.add('hide')
+        answerWin()
+      } else {
+        console.log('wrong')
+        nextButton.classList.add('hide')
+        timeKeeper.classList.add('hide')
+        answerFail()
+      }
+    }
+
+    function changeColor (element, correct) {
+      if (correct) {
+        element.classList.add('green')
+      } else {
+        element.classList.add('hide')
+      }
+    }
+
+    const questions = [
+      {
+        question: "Which of the following would a security specialist be able to determine upon examination of a server's certificate?",
+        answers: [
+          { text: 'A. CA public key', correct: false },
+          { text: 'B. Server private key', correct: false },
+          { text: 'C. CSR', correct: false },
+          { text: 'D. OID ', correct: true }
+        ]
+      },
+      {
+        question: "A security analyst is diagnosing an incident in which a system was compromised from an external IP address. The socket identified on the firewall was traced to 207.46.130.0:6666. Which of the following should the security analyst do to determine if the compromised system still has an active connection?",
+        answers: [
+          { text: 'A. tracert', correct: false },
+          { text: 'B. netstat', correct: true },
+          { text: 'C. ping', correct: false },
+          { text: 'D. nslookup', correct: false }
+        ]
+      },
+      {
+        question: "Multiple organizations operating in the same vertical want to provide seamless wireless access for their employees as they visit the other organizations. Which of the following should be implemented if all the organizations use the native 802.1x client on their mobile devices?",
+        answers: [
+          { text: 'A. Shibboleth', correct: false },
+          { text: 'B. RADIUS federation', correct: true },
+          { text: 'C. SAML', correct: false },
+          { text: 'D. OAuth', correct: false },
+          { text: 'E. OpenID connect', correct: false }
+        ]
+      },
+      {
+        question: "Which of the following BEST describes an important security advantage yielded by implementing vendor diversity?",
+        answers: [
+          { text: 'A. Sustainability', correct: false },
+          { text: 'B. Homogeneity', correct: false },
+          { text: 'C. Resiliency', correct: true },
+          { text: 'D. Configurability', correct: false }
+        ]
+      },
+      {
+        question: "In a corporation where computer utilization spikes several times a year, the Chief Information Officer (CIO) has requested a cost-effective architecture to handle the variable capacity demand. Which of the following characteristics BEST describes what the CIO has requested?",
+        answers: [
+          { text: 'A. Elasticity', correct: true },
+          { text: 'B. Scalability', correct: false },
+          { text: 'C. High availability', correct: false },
+          { text: 'D. Redundancy', correct: false }
+        ]
+      },
+      // #5
+      {
+        question: "A security engineer is configuring a system that requires the X.509 certificate information to be pasted into a form field in Base64 encoded format to import it into the system. Which of the following certificate formats should the engineer use to obtain the information in the required format?",
+        answers: [
+          { text: 'A. PFX', correct: false },
+          { text: 'B. PEM', correct: true },
+          { text: 'C. DER', correct: false },
+          { text: 'D. CER', correct: false }
+        ]
+      },
+      {
+        question: "Which of the following attacks specifically impact data availability?",
+        answers: [
+          { text: 'A. DDoS', correct: true },
+          { text: 'B. Trojan', correct: false },
+          { text: 'C. MITM', correct: false },
+          { text: 'D. Rootkit', correct: false }
+        ]
+      },
+      {
+        question: "Which of the following threat actors is MOST likely to steal a company's proprietary information to gain a market edge and reduce time to market?",
+        answers: [
+          { text: 'A. Competitor', correct: true },
+          { text: 'B. Hacktivist', correct: false },
+          { text: 'C. Insider', correct: false },
+          { text: 'D. Organized crime', correct: false }
+        ]
+      },
+      {
+        question: "A penetration tester is crawling a target website that is available to the public. Which of the following represents the actions the penetration tester is performing?",
+        answers: [
+          { text: 'A. URL hijacking', correct: false },
+          { text: 'B. Reconnaissance', correct: true },
+          { text: 'C. White box testing', correct: false },
+          { text: 'D. Escalation of privilege', correct: false }
+        ]
+      },
+      {
+        question: "Which of the following best describes routine in which semicolons, dashes, quotes, and commas are removed from a string?",
+        answers: [
+          { text: 'A. Error handling to protect against program exploitation', correct: false },
+          { text: 'B. Exception handling to protect against XSRF attacks', correct: false },
+          { text: 'C. Input validation to protect against SQL injection', correct: true },
+          { text: 'D. Padding to protect against string buffer overflows', correct: false }
+        ]
+      },
+      // #10
+      {
+        question: "A security analyst wishes to increase the security of an FTP server. Currently, all traffic to the FTP server is unencrypted. Users connecting to the FTP server use a variety of modern FTP client software. The security analyst wants to keep the same port and protocol, while also still allowing unencrypted connections. Which of the following would BEST accomplish these goals?",
+        answers: [
+          { text: 'A. Require the SFTP protocol to connect to the file server.', correct: false },
+          { text: 'B. Use implicit TLS on the FTP server.', correct: false },
+          { text: 'C. Use explicit FTPS for connections.', correct: true },
+          { text: 'D. Use SSH tunneling to encrypt the FTP traffic.', correct: false }
+        ]
+      },
+      {
+        question: "Which of the following explains why vendors publish MD5 values when they provide software patches for their customers to download over the Internet?",
+        answers: [
+          { text: 'A. The recipient can verify integrity of the software patch.', correct: true },
+          { text: 'B. The recipient can verify the authenticity of the site used to download the patch.', correct: false },
+          { text: 'C. The recipient can request future updates to the software using the published MD5 value.', correct: false },
+          { text: 'D. The recipient can successfully activate the new software patch.', correct: false }
+        ]
+      },
+      {
+        question: "Multiple employees receive an email with a malicious attachment that begins to encrypt their hard drives and mapped shares on their devices when it is opened. The network and security teams perform the following actions:\n-Shut down all network shares.\n-Run an email search identifying all employees who received the malicious message.\n-Reimage all devices belonging to users who opened the attachment.\nNext, the teams want to re-enable the network shares. Which of the following BEST describes this phase of the incident response process?",
+        answers: [
+          { text: 'A. Eradication', correct: false },
+          { text: 'B. Containment', correct: false },
+          { text: 'C. Recovery', correct: true },
+          { text: 'D. Lessons learned', correct: false }
+        ]
+      },
+      {
+        question: "An organization has determined it can tolerate a maximum of three hours of downtime. Which of the following has been specified?",
+        answers: [
+          { text: 'A. RTO', correct: true },
+          { text: 'B. RPO', correct: false },
+          { text: 'C. MTBF', correct: false },
+          { text: 'D. MTTR', correct: false }
+        ]
+      },
+      {
+        question: "Which of the following types of keys is found in a key escrow?",
+        answers: [
+          { text: 'A. Public', correct: false },
+          { text: 'B. Private', correct: true },
+          { text: 'C. Shared', correct: false },
+          { text: 'D. Session', correct: false }
+        ]
+      },
+      // #15
+      {
+        question: "Which of the following types of cloud infrastructures would allow several organizations with similar structures and interests to realize the benefits of shared storage and resources?",
+        answers: [
+          { text: 'A. Private', correct: false },
+          { text: 'B. Hybrid', correct: false },
+          { text: 'C. Public', correct: false },
+          { text: 'D. Community', correct: true }
+        ]
+      },
+      {
+        question: "A company determines that it is prohibitively expensive to become compliant with new credit card regulations. Instead, the company decides to purchase insurance to cover the cost of any potential loss. Which of the following is the company doing?",
+        answers: [
+          { text: 'A. Transferring the risk', correct: true },
+          { text: 'B. Accepting the risk', correct: false },
+          { text: 'C. Avoiding the risk', correct: false },
+          { text: 'D. Migrating the risk', correct: false }
+        ]
+      },
+      {
+        question: "A botnet has hit a popular website with a massive number of GRE-encapsulated packets to perform a DDoS attack. News outlets discover a certain type of refrigerator was exploited and used to send outbound packets to the website that crashed. To which of the following categories does the refrigerator belong?",
+        answers: [
+          { text: 'A. SoC', correct: false },
+          { text: 'B. ICS', correct: false },
+          { text: 'C. IoT', correct: true },
+          { text: 'D. MFD', correct: false }
+        ]
+      },
+      {
+        question: "When trying to log onto a company's new ticketing system, some employees receive the following message: \nAccess denied: too many concurrent. \nThe ticketing system was recently installed on a small VM with only the recommended hardware specifications. Which of the following is the MOST sessions likely cause for this error message?",
+        answers: [
+          { text: 'A. Network resources have been exceeded.', correct: false },
+          { text: 'B. The software is out of licenses.', correct: false },
+          { text: 'C. The VM does not have enough processing power.', correct: true },
+          { text: 'D. The firewall is misconfigured.', correct: false }
+        ]
+      },
+      {
+        question: "Which of the following can be provided to an AAA system for the identification phase?",
+        answers: [
+          { text: 'A. Username', correct: true },
+          { text: 'B. Permissions', correct: false },
+          { text: 'C. One-time token', correct: false },
+          { text: 'D. Private certificate', correct: false }
+        ]
+      },
+      // #20
+      {
+        question: "Which of the following implements two-factor authentication?",
+        answers: [
+          { text: 'A. A phone system requiring a PIN to make a call', correct: false },
+          { text: 'B. At ATM requiring a credit card and PIN', correct: true },
+          { text: 'C. A computer requiring username and password', correct: false },
+          { text: 'D. A datacenter mantrap requiring fingerprint and iris scan', correct: false }
+        ]
+      },
+      {
+        question: "Malicious traffic from an internal network has been detected on an unauthorized port on an application server. Which of the following network-based security controls should the engineer consider implementing?",
+        answers: [
+          { text: 'A. ACLs', correct: true },
+          { text: 'B. HIPS', correct: false },
+          { text: 'C. NAT', correct: false },
+          { text: 'D. MAC filtering', correct: false }
+        ]
+      },
+      {
+        question: "A network administrator wants to implement a method of securing internal routing. Which of the following should the administrator implement?",
+        answers: [
+          { text: 'A. DMZ', correct: false },
+          { text: 'B. NAT', correct: false },
+          { text: 'C. VPN', correct: true },
+          { text: 'D. PAT', correct: false }
+        ]
+      },
+      {
+        question: "Which of the following encryption methods does PKI typically use to securely protect keys?",
+        answers: [
+          { text: 'A. Elliptic curve', correct: false },
+          { text: 'B. Digital signatures', correct: false },
+          { text: 'C. Asymmetric', correct: true },
+          { text: 'D. Obfuscation', correct: false }
+        ]
+      },
+      {
+        question: "An organization is using a tool to perform a source code review. Which of the following describes the case in which the tool incorrectly identifies the vulnerability?",
+        answers: [
+          { text: 'A. False negative', correct: false },
+          { text: 'B. True negative', correct: false },
+          { text: 'C. False positive', correct: true },
+          { text: 'D. True positive', correct: false }
+        ]
+      },
+      // #25
+      {
+        question: "A department head at a university resigned on the first day of the spring semester. It was subsequently determined that the department head deleted numerous files and directories from the server-based home directory while the campus was closed. Which of the following policies or procedures could have prevented this from occurring?",
+        answers: [
+          { text: 'A. Time-of-day restrictions', correct: true },
+          { text: 'B. Permission auditing and review', correct: false },
+          { text: 'C. Offboarding', correct: false },
+          { text: 'D. Account expiration', correct: false }
+        ]
+      },
+      {
+        question: "A database backup schedule consists of weekly full backups performed on Saturday at 12:00 a.m. and daily differential backups also performed at 12:00 a.m. If the database is restored on Tuesday afternoon, which of the following is the number of individual backups that would need to be applied to complete the database recovery?",
+        answers: [
+          { text: 'A. 1', correct: false },
+          { text: 'B. 2', correct: true },
+          { text: 'C. 3', correct: false },
+          { text: 'D. 4', correct: false }
+        ]
+      },
+      {
+        question: "Which of the following security controls does an iris scanner provide?",
+        answers: [
+          { text: 'A. Logical ', correct: false },
+          { text: 'B. Administrative', correct: false },
+          { text: 'C. Corrective', correct: false },
+          { text: 'D. Physical', correct: true },
+          { text: 'E. Detective', correct: false },
+          { text: 'F. Deterrent', correct: false }
+        ]
+      },
+      {
+        question: "As part of a new industry regulation, companies are required to utilize secure, standardized OS settings. A technician must ensure the OS settings are hardened. Which of the following is the BEST way to do this?",
+        answers: [
+          { text: 'A. Use a vulnerability scanner.', correct: false },
+          { text: 'B. Use a configuration compliance scanner.', correct: true },
+          { text: 'C. Use a passive, in-line scanner.', correct: false },
+          { text: 'D. Use a protocol analyzer.', correct: false }
+        ]
+      },
+      {
+        question: "A user has attempted to access data at a higher classification level than the user's account is currently authorized to access. Which of the following access control models has been applied to this user's account?",
+        answers: [
+          { text: 'A. MAC', correct: true },
+          { text: 'B. DAC', correct: false },
+          { text: 'C. RBAC', correct: false },
+          { text: 'D. ABAC', correct: false }
+        ]
+      },
+      // #30
+      {
+        question: "A security consultant discovers that an organization is using the PCL protocol to print documents, utilizing the default driver and print settings. Which of the following is the MOST likely risk in this situation?",
+        answers: [
+          { text: 'A. An attacker can access and change the printer configuration.', correct: false },
+          { text: 'B. SNMP data leaving the printer will not be properly encrypted.', correct: true },
+          { text: 'C. An MITM attack can reveal sensitive information.', correct: false },
+          { text: 'D. An attacker can easily inject malicious code into the printer firmware.', correct: false },
+          { text: 'E. Attackers can use the PCL protocol to bypass the firewall of client computers.', correct: false }
+        ]
+      },
+      {
+        question: "An organization finds that most help desk calls are regarding account lockout due to a variety of applications running on different systems. Management is looking for a solution to reduce the number of account lockouts while improving security. Which of the following is the BEST solution for this organization?",
+        answers: [
+          { text: 'A. Create multiple application accounts for each user.', correct: false },
+          { text: 'B. Provide secure tokens.', correct: false },
+          { text: 'C. Implement SSO.', correct: true },
+          { text: 'D. Utilize role-based access control.', correct: false }
+        ]
+      },
+      {
+        question: "Ann, a security administrator, has been instructed to perform fuzz-based testing on the company's applications. Which of the following best describes what she will do?",
+        answers: [
+          { text: 'A. Enter random or invalid data into the application in an attempt to cause it to fault', correct: true },
+          { text: 'B. Work with the developers to eliminate horizontal privilege escalation opportunities', correct: false },
+          { text: 'C. Test the applications for the existence of built-in- back doors left by the developers', correct: false },
+          { text: 'D. Hash the application to verify it wont cause a false positive on the HIPS', correct: false }
+        ]
+      },
+      {
+        question: "An attacker compromises a public CA and issues unauthorized X.509 certificates for Company.com. In the future, Company.com wants to mitigate the impact of similar incidents. Which of the following would assist Company.com with its goal?",
+        answers: [
+          { text: 'A. Certificate pinning', correct: true },
+          { text: 'B. Certificate stapling', correct: false },
+          { text: 'C. Certificate chaining', correct: false },
+          { text: 'D. Certificate with extended validation', correct: false }
+        ]
+      },
+      {
+        question: "A systems administrator is attempting to recover from a catastrophic failure in the datacenter. To recover the domain controller, the systems administrator needs to provide the domain administrator credentials. Which of the following account types is the systems administrator using?",
+        answers: [
+          { text: 'A. Shared account', correct: false },
+          { text: 'B. Guest account', correct: false },
+          { text: 'C. Service account', correct: true },
+          { text: 'D. User account', correct: false }
+        ]
+      },
+      // #35
+      {
+        question: "A network administrator at a small office wants to simplify the configuration of mobile clients connecting to an encrypted wireless network. Which of the following should be implemented in the administrator does not want to provide the wireless password or he certificate to the employees?",
+        answers: [
+          { text: 'A. WPS', correct: true },
+          { text: 'B. 802.1x', correct: false },
+          { text: 'C. WPA2-PSK', correct: false },
+          { text: 'D. TKIP', correct: false }
+        ]
+      },
+      {
+        question: "When connected to a secure WAP, which of the following encryption technologies is MOST likely to be configured when connecting to WPA2-PSK?",
+        answers: [
+          { text: 'A. DES', correct: false },
+          { text: 'B. AES', correct: true },
+          { text: 'C. MD5', correct: false },
+          { text: 'D. WEP', correct: false }
+        ]
+      },
+      {
+        question: "A company has a data classification system with definitions for Private and Public. The company's security policy outlines how data should be protected based on type. The company recently added the data type Proprietary. Which of the following is the MOST likely reason the company added this data type?",
+        answers: [
+          { text: 'A. Reduced cost', correct: false },
+          { text: 'B. More searchable data', correct: false },
+          { text: 'C. Better data classification', correct: true },
+          { text: 'D. Expanded authority of the privacy officer', correct: false }
+        ]
+      },
+      {
+        question: "When configuring settings in a mandatory access control environment, which of the following specifies the subjects that can access specific data objects?",
+        answers: [
+          { text: 'A. Owner', correct: false },
+          { text: 'B. System', correct: false },
+          { text: 'C. Administrator', correct: true },
+          { text: 'D. User', correct: false }
+        ]
+      },
+      {
+        question: "A high-security defense installation recently begun utilizing large guard dogs that bark very loudly and excitedly at the slightest provocation. Which of the following types of controls does this BEST describe?",
+        answers: [
+          { text: 'A. Deterrent', correct: true },
+          { text: 'B. Preventive', correct: false },
+          { text: 'C. Detective', correct: false },
+          { text: 'D. Compensating', correct: false }
+        ]
+      },
+      // #40
+      {
+        question: "A company is terminating an employee for misbehavior. Which of the following steps is MOST important in the process of disengagement from this employee?",
+        answers: [
+          { text: 'A. Obtain a list of passwords used by the employee.', correct: false },
+          { text: 'B. Generate a report on outstanding projects the employee handled.', correct: false },
+          { text: 'C. Have the employee surrender company identification.', correct: true },
+          { text: 'D. Have the employee sign an NDA before departing.', correct: false }
+        ]
+      },
+      {
+        question: "A company is developing a new secure technology and requires computers being used for development to be isolated. Which of the following should be implemented to provide the MOST secure environment?",
+        answers: [
+          { text: 'A. A perimeter firewall and IDS', correct: false },
+          { text: 'B. An air gapped computer network', correct: true },
+          { text: 'C. A honeypot residing in a DMZ', correct: false },
+          { text: 'D. An ad hoc network with NAT', correct: false },
+          { text: 'E. A bastion host', correct: false }
+        ]
+      },
+      {
+        question: "Which of the following is an important step to take BEFORE moving any installation packages from a test environment to production?",
+        answers: [
+          { text: 'A. Roll back changes in the test environment', correct: false },
+          { text: 'B. Verify the hashes of files', correct: true },
+          { text: 'C. Archive and compress the files', correct: false },
+          { text: 'D. Update the secure baseline', correct: false }
+        ]
+      },
+      {
+        question: "A user clicked an email link that led to a website than infected the workstation with a virus. The virus encrypted all the network shares to which the user had access. The virus was not deleted or blocked by the company's email filter, website filter, or antivirus. Which of the following describes what occurred?",
+        answers: [
+          { text: "A. The user's account was over-privileged.", correct: false },
+          { text: 'B. Improper error handling triggered a false negative in all three controls.', correct: false },
+          { text: 'C. The email originated from a private email server with no malware protection.', correct: false },
+          { text: 'D. The virus was a zero-day attack.', correct: true }
+        ]
+      },
+      {
+        question: "An organization wishes to provide better security for its name resolution services. Which of the following technologies BEST supports the deployment of DNSSEC at the organization?",
+        answers: [
+          { text: 'A. LDAP', correct: false },
+          { text: 'B. TPM', correct: false },
+          { text: 'C. TLS', correct: true },
+          { text: 'D. SSL', correct: false },
+          { text: 'E. PKI', correct: false }
+        ]
+      },
+      // #45
+      {
+        question: "A company hires a consulting firm to crawl its Active Directory network with a non-domain account looking for unpatched systems. Actively taking control of systems is out of scope, as is the creation of new administrator accounts. For which of the following is the company hiring the consulting firm?",
+        answers: [
+          { text: 'A. Vulnerability scanning', correct: true },
+          { text: 'B. Penetration testing', correct: false },
+          { text: 'C. Application fuzzing', correct: false },
+          { text: 'D. User permission auditing', correct: false }
+        ]
+      },
+      {
+        question: "An administrator is replacing a wireless router. The configuration of the old wireless router was not documented before it stopped functioning. The equipment connecting to the wireless network uses older legacy equipment that was manufactured prior to the release of the 802.11i standard. Which of the following configuration options should the administrator select for the new wireless router?",
+        answers: [
+          { text: 'A. WPA+CCMP', correct: false },
+          { text: 'B. WPA2+CCMP', correct: false },
+          { text: 'C. WPA+TKIP', correct: true },
+          { text: 'D. WPA2+TKIP', correct: false }
+        ]
+      },
+      {
+        question: "An application team is performing a load-balancing test for a critical application during off-hours and has requested access to the load balancer to review which servers are up without having the administrator on call. The security analyst is hesitant to give the application team full access due to other critical applications running on the load balancer. Which of the following is the BEST solution for security analyst to process the request?",
+        answers: [
+          { text: 'A. Give the application team administrator access during off-hours.', correct: false },
+          { text: 'B. Disable other critical applications before granting the team access.', correct: false },
+          { text: 'C. Give the application team read-only access.', correct: true },
+          { text: 'D. Share the account with the application team.', correct: false }
+        ]
+      },
+      {
+        question: "A security analyst is hardening an authentication server. One of the primary requirements is to ensure there is mutual authentication and delegation. Given these requirements, which of the following technologies should the analyst recommend and configure?",
+        answers: [
+          { text: 'A. LDAP services', correct: false },
+          { text: 'B. Kerberos services', correct: true },
+          { text: 'C. NTLM services', correct: false },
+          { text: 'D. CHAP services', correct: false }
+        ]
+      },
+      {
+        question: "Two users need to send each other emails over unsecured channels. The system should support the principle of non-repudiation. Which of the following should be used to sign the user's certificates?",
+        answers: [
+          { text: 'A. RA', correct: false },
+          { text: 'B. CA', correct: true },
+          { text: 'C. CRL', correct: false },
+          { text: 'D. CSR', correct: false }
+        ]
+      },
+      // #50 ********************************************************************
+      {
+        question: "Which of the following attack types BEST describes a client-side attack that is used to manipulate an HTML iframe with JavaScript code via a web browser?",
+        answers: [
+          { text: 'A. Buffer overflow', correct: false },
+          { text: 'B. MITM', correct: false },
+          { text: 'C. XSS', correct: true },
+          { text: 'D. SQLi', correct: false }
+        ]
+      },
+      // #5
+      {
+        question: "An incident responder receives a call from a user who reports a computer is exhibiting symptoms consistent with a malware infection. Which of the following steps should the responder perform NEXT?",
+        answers: [
+          { text: 'A. Capture and document necessary information to assist in the response.', correct: true },
+          { text: 'B. Request the user capture and provide a screenshot or recording of the symptoms.', correct: false },
+          { text: 'C. Use a remote desktop client to collect and analyze the malware in real time.', correct: false },
+          { text: 'D. Ask the user to back up files for later recovery.', correct: false }
+        ]
+      },
+      {
+        question: "A senior incident response manager receives a call about some external IPs communicating with internal computers during off hours. Which of the following types of malware is MOST likely causing this issue?",
+        answers: [
+          { text: 'A. Botnet', correct: true },
+          { text: 'B. Ransomware', correct: false },
+          { text: 'C. Polymorphic malware', correct: false },
+          { text: 'D. Armored virus', correct: false }
+        ]
+      },
+      {
+        question: "Which of the following specifically describes the exploitation of an interactive process to access otherwise restricted areas of the OS?",
+        answers: [
+          { text: 'A. Privilege escalation', correct: true },
+          { text: 'B. Pivoting', correct: false },
+          { text: 'C. Process affinity', correct: false },
+          { text: 'D. Buffer overflow', correct: false }
+        ]
+      },
+      {
+        question: "Which of the following network vulnerability scan indicators BEST validates a successful, active scan?",
+        answers: [
+          { text: 'A. The scan job is scheduled to run during off-peak hours.', correct: false },
+          { text: 'B. The scan output lists SQL injection attack vectors.', correct: true },
+          { text: 'C. The scan data identifies the use of privileged-user credentials.', correct: false },
+          { text: 'D. The scan results identify the hostname and IP address.', correct: false }
+        ]
+      },
+      {
+        question: "An analyst wants to implement a more secure wireless authentication for office access points. Which of the following technologies allows for encrypted authentication of wireless clients over TLS?",
+        answers: [
+          { text: 'A. PEAP', correct: true },
+          { text: 'B. EAP', correct: false },
+          { text: 'C. WPA2', correct: false },
+          { text: 'D. RADIUS', correct: false }
+        ]
+      },
+      // #10
+      {
+        question: "When systems, hardware, or software are not supported by the original vendor, it is a vulnerability known as:",
+        answers: [
+          { text: 'A. system sprawl', correct: false },
+          { text: 'B. end-of-life systems', correct: true },
+          { text: 'C. resource exhaustion', correct: false },
+          { text: 'D. a default configuration', correct: false }
+        ]
+      },
+      {
+        question: "Which of the following is the BEST explanation of why control diversity is important in a defense-in-depth architecture?",
+        answers: [
+          { text: 'A. Social engineering is used to bypass technical controls, so having diversity in controls minimizes the risk of demographic exploitation', correct: false },
+          { text: 'B. Hackers often impact the effectiveness of more than one control, so having multiple copies of individual controls provides redundancy', correct: false },
+          { text: 'C. Technical exploits to defeat controls are released almost every day; control diversity provides overlapping protection.', correct: true },
+          { text: 'D. Defense-in-depth relies on control diversity to provide multiple levels of network hierarchy that allow user domain segmentation', correct: false }
+        ]
+      },
+      {
+        question: "A system administrator wants to provide balance between the security of a wireless network and usability. The administrator is concerned with wireless encryption compatibility of older devices used by some employees. Which of the following would provide strong security and backward compatibility when accessing the wireless network?",
+        answers: [
+          { text: 'A. Open wireless network and SSL VPN', correct: true },
+          { text: 'B. WPA using a preshared key', correct: false },
+          { text: 'B. WPA using a preshared key', correct: false },
+          { text: 'D. WEP with a 40-bit key', correct: false }
+        ]
+      },
+      {
+        question: "In terms of encrypting data, which of the following is BEST described as a way to safeguard password data by adding random data to it in storage?",
+        answers: [
+          { text: 'A. Using salt', correct: true },
+          { text: 'B. Using hash algorithms', correct: false },
+          { text: 'C. Implementing elliptical curve', correct: false },
+          { text: 'D. Implementing PKI', correct: false }
+        ]
+      },
+      {
+        question: "A system administrator wants to provide for and enforce wireless access accountability during events where external speakers are invited to make presentations to a mixed audience of employees and non-employees. Which of the following should the administrator implement?",
+        answers: [
+          { text: 'A. Shared accounts', correct: false },
+          { text: 'B. Preshared passwords', correct: false },
+          { text: 'C. Least privilege', correct: false },
+          { text: 'D. Sponsored guest', correct: true }
+        ]
+      },
+      //15
+      {
+        question: "Which of the following would MOST likely appear in an uncredentialed vulnerability scan?",
+        answers: [
+          { text: 'A. Self-signed certificates', correct: false },
+          { text: 'B. Missing patches', correct: true },
+          { text: 'C. Auditing parameters', correct: false },
+          { text: 'D. Inactive local accounts', correct: false }
+        ]
+      },
+      {
+        question: "Which of the following would MOST likely appear in an uncredentialed vulnerability scan?",
+        answers: [
+          { text: 'A. Self-signed certificates', correct: false },
+          { text: 'B. Missing patches', correct: true },
+          { text: 'C. Auditing parameters', correct: false },
+          { text: 'D. Inactive local accounts', correct: false }
+        ]
+      },
+      {
+        question: "When identifying a company's most valuable assets as part of a BIA, which of the following should be the FIRST priority?",
+        answers: [
+          { text: 'A. Life', correct: true },
+          { text: 'B. Intellectual property', correct: false },
+          { text: 'C. Sensitive data', correct: false },
+          { text: 'D. Public reputation', correct: false }
+        ]
+      },
+      {
+        question: "An organization needs to implement a large PKI. Network engineers are concerned that repeated transmission of the OCSP will impact network performance. Which of the following should the security analyst recommend is lieu of an OCSP?",
+        answers: [
+          { text: 'A. CSR', correct: false },
+          { text: 'B. CRL', correct: true },
+          { text: 'C. CA', correct: false },
+          { text: 'D. OID', correct: false }
+        ]
+      },
+      {
+        question: "Which of the following occurs when the security of a web application relies on JavaScript for input validation?",
+        answers: [
+          { text: 'A. The integrity of the data is at risk.', correct: true },
+          { text: 'B. The security of the application relies on antivirus.', correct: false },
+          { text: 'C. A host-based firewall is required.', correct: false },
+          { text: 'D. The application is vulnerable to race conditions.', correct: false }
+        ]
+      },
+      // #20
+      {
+      question: "An organization's file server has been virtualized to reduce costs. Which of the following types of backups would be MOST appropriate for the particular file server?",
+      answers: [
+        { text: 'A. Snapshot', correct: false },
+        { text: 'B. Full', correct: false },
+        { text: 'C. Incremental', correct: true },
+        { text: 'D. Differential', correct: false }
+      ]
+      },
+      {
+      question: "A wireless network uses a RADIUS server that is connected to an authenticator, which in turn connects to a supplicant. Which of the following represents the authentication architecture in use?",
+      answers: [
+        { text: 'A. Open systems authentication', correct: false },
+        { text: 'B. Captive portal', correct: true },
+        { text: 'C. RADIUS federation', correct: false },
+        { text: 'D. 802.1x', correct: false }
+      ]
+      },
+      {
+      question: "An employer requires that employees use a key-generating app on their smartphones to log into corporate applications. In terms of authentication of an individual, this type of access policy is BEST defined as:",
+      answers: [
+        { text: 'A. Something you have.', correct: true },
+        { text: 'B. Something you know.', correct: false },
+        { text: 'C. Something you do.', correct: false },
+        { text: 'D. Something you are.', correct: false }
+      ]
+      },
+      {
+      question: "Adhering to a layered security approach, a controlled access facility employs security guards who verify the authorization of all personnel entering the facility. Which of the following terms BEST describes the security control being employed?",
+      answers: [
+        { text: 'A. Administrative', correct: true },
+        { text: 'B. Corrective', correct: false },
+        { text: 'C. Deterrent', correct: false },
+        { text: 'D. Compensating', correct: false }
+      ]
+      },
+      {
+      question: "An auditor is reviewing the following output from a password-cracking tool:\n user1: Password1 \n user2: Recovery! \n user3: Alaskan10 \n user4: 4Private \n user5: PerForMance2 \n Which of the following methods did the auditor MOST likely use?",
+      answers: [
+        { text: 'A. Hybrid', correct: true },
+        { text: 'B. Dictionary', correct: false },
+        { text: 'C. Brute force', correct: false },
+        { text: 'D. Rainbow table', correct: false }
+      ]
+      },
+      // #25
+      {
+      question: "Which of the following must be intact for evidence to be admissible in court?",
+      answers: [
+        { text: 'A. Chain of custody', correct: true },
+        { text: 'B. Order of volatility', correct: false },
+        { text: 'C. Legal hold', correct: false },
+        { text: 'D. Preservation', correct: false }
+      ]
+      },
+      {
+      question: "A vulnerability scanner that uses its running service's access level to better assess vulnerabilities across multiple assets within an organization is performing a:",
+      answers: [
+        { text: 'A. Credentialed scan.', correct: true },
+        { text: 'B. Non-intrusive scan.', correct: false },
+        { text: 'C. Privilege escalation test.', correct: false },
+        { text: 'D. Passive scan.', correct: false }
+      ]
+      },
+      {
+      question: "Which of the following cryptography algorithms will produce a fixed-length, irreversible output?",
+      answers: [
+        { text: 'A. AES', correct: false },
+        { text: 'B. 3DES', correct: false },
+        { text: 'C. RSA', correct: false },
+        { text: 'D. MD5', correct: true }
+      ]
+      },
+      {
+      question: "A Chief Executive Officer (CEO) suspects someone in the lab testing environment is stealing confidential information after working hours when no one else is around. Which of the following actions can help to prevent this specific threat?",
+      answers: [
+        { text: 'A. Implement time-of-day restrictions.', correct: true },
+        { text: 'B. Audit file access times.', correct: false },
+        { text: 'C. Secretly install a hidden surveillance camera.', correct: false },
+        { text: 'D. Require swipe-card access to enter the lab.', correct: false }
+      ]
+      },
+      {
+      question: "A new firewall has been places into service at an organization. However, a configuration has not been entered on the firewall. Employees on the network segment covered by the new firewall report they are unable to access the network. Which of the following steps should be completed to BEST resolve the issue?",
+      answers: [
+        { text: 'A. The firewall should be configured to prevent user traffic form matching the implicit deny rule.', correct: true },
+        { text: 'B. The firewall should be configured with access lists to allow inbound and outbound traffic.', correct: false },
+        { text: 'C. The firewall should be configured with port security to allow traffic.', correct: false },
+        { text: 'D. The firewall should be configured to include an explicit deny rule.', correct: false }
+      ]
+      },
+      // #30
+      {
+      question: "A Chief Information Officer (CIO) drafts an agreement between the organization and its employees. The agreement outlines ramifications for releasing information without consent and/or approvals. Which of the following BEST describes this type of agreement?",
+      answers: [
+        { text: 'A. ISA', correct: false },
+        { text: 'B. NDA', correct: true },
+        { text: 'C. MOU', correct: false },
+        { text: 'D. SLA', correct: false }
+      ]
+      },
+      {
+      question: "Which of the following would meet the requirements for multifactor authentication?",
+      answers: [
+        { text: 'A. Username, PIN, and employee ID number', correct: false },
+        { text: 'B. Fingerprint and password', correct: true },
+        { text: 'C. Smart card and hardware token', correct: false },
+        { text: 'D. Voice recognition and retina scan', correct: false }
+      ]
+      },
+      {
+      question: "A manager suspects that an IT employee with elevated database access may be knowingly modifying financial transactions for the benefit of a competitor. Which of the following practices should the manager implement to validate the concern?",
+      answers: [
+        { text: 'A. Separation of duties', correct: false },
+        { text: 'B. Mandatory vacations', correct: true },
+        { text: 'C. Background checks', correct: false },
+        { text: 'D. Security awareness training', correct: false }
+      ]
+      },
+      // #35
+      {
+      question: "A penetration tester finds that a company's login credentials for the email client were being sent in clear text. Which of the following should be done to provide encrypted logins to the email server?",
+      answers: [
+        { text: 'A. Enable IPSec and configure SMTP.', correct: false },
+        { text: 'B. Enable SSH and LDAP credentials.', correct: false },
+        { text: 'C. Enable MIME services and POP3.', correct: false },
+        { text: 'D. Enable an SSL certificate for IMAP services.', correct: true }
+      ]
+      },
+      {
+      question: "Before an infection was detected, several of the infected devices attempted to access a URL that was similar to the company name but with two letters transposed. Which of the following BEST describes the attack vector used to infect the devices?",
+      answers: [
+        { text: 'A. Cross-site scripting', correct: false },
+        { text: 'B. DNS poisoning', correct: false },
+        { text: 'C. Typo squatting', correct: true },
+        { text: 'D. URL hijacking', correct: false }
+      ]
+      },
+      {
+      question: "Joe, a security administrator, needs to extend the organization's remote access functionality to be used by staff while travelling. Joe needs to maintain separate access control functionalities for internal, external, and VOIP services. Which of the following represents the BEST access technology for Joe to use?",
+      answers: [
+        { text: 'A. RADIUS', correct: false },
+        { text: 'B. TACACS+', correct: true },
+        { text: 'C. Diameter', correct: false },
+        { text: 'D. Kerberos', correct: false }
+      ]
+      },
+      {
+      question: "The availability of a system has been labeled as the highest priority. Which of the following should be focused on the MOST to ensure the objective?",
+      answers: [
+        { text: 'A. Authentication', correct: false },
+        { text: 'B. HVAC', correct: true },
+        { text: 'C. Full-disk encryption', correct: false },
+        { text: 'D. File integrity checking', correct: false }
+      ]
+      },
+      {
+      question: "As part of the SDLC, a third party is hired to perform a penetration test. The third party will have access to the source code, integration tests, and network diagrams. Which of the following BEST describes the assessment being performed?",
+      answers: [
+        { text: 'A. Black box', correct: false },
+        { text: 'B. Regression', correct: false },
+        { text: 'C. White box', correct: true },
+        { text: 'D. Fuzzing', correct: false }
+      ]
+      },
+      // #40
+      {
+      question: "A dumpster diver recovers several hard drives from a company and is able to obtain confidential data from one of the hard drives. The company then discovers its information is posted online. Which of the following methods would have MOST likely prevented the data from being exposed?",
+      answers: [
+        { text: 'A. Removing the hard drive from its enclosure', correct: false },
+        { text: 'B. Using software to repeatedly rewrite over the disk space', correct: false },
+        { text: 'C. Using Blowfish encryption on the hard drives', correct: false },
+        { text: 'D. Using magnetic fields to erase the data', correct: true }
+      ]
+      },
+      {
+      question: "An application developer is designing an application involving secure transports from one service to another that will pass over port 80 for a request. Which of the following secure protocols is the developer MOST likely to use?",
+      answers: [
+        { text: 'A. FTPS', correct: false },
+        { text: 'B. SFTP', correct: false },
+        { text: 'C. SSL', correct: true },
+        { text: 'D. LDAPS', correct: false },
+        { text: 'E. SSH', correct: false }
+      ]
+      },
+      {
+      question: "Which of the following precautions MINIMIZES the risk from network attacks directed at multifunction printers, as well as the impact on functionality at the same time?",
+      answers: [
+        { text: 'A. Isolating the systems using VLANs', correct: true },
+        { text: 'B. Installing a software-based IPS on all devices', correct: false },
+        { text: 'C. Enabling full disk encryption', correct: false },
+        { text: 'D. Implementing a unique user PIN access functions', correct: false }
+      ]
+      },
+      {
+      question: "After an identified security breach, an analyst is tasked to initiate the IR process. Which of the following is the NEXT step the analyst should take?",
+      answers: [
+        { text: 'A. Recovery', correct: false },
+        { text: 'B. Identification', correct: true },
+        { text: 'C. Preparation', correct: false },
+        { text: 'D. Documentation', correct: false },
+        { text: 'E. Escalation', correct: false }
+      ]
+      },
+      {
+      question: "A company was recently audited by a third party. The audit revealed the company's network devices were transferring files in the clear. Which of the following protocols should the company use to transfer files?",
+      answers: [
+        { text: 'A. HTTPS', correct: false },
+        { text: 'B. LDAPS', correct: false },
+        { text: 'C. SCP', correct: true },
+        { text: 'D. SNMPv3', correct: false }
+      ]
+      },
+      // #45
+      {
+      question: "During a monthly vulnerability scan, a server was flagged for being vulnerable to an Apache Struts exploit. Upon further investigation, the developer responsible for the server informs the security team that Apache Struts is not installed on the server. Which of the following BEST describes how the security team should reach to this incident?",
+      answers: [
+        { text: 'A. The finding is a false positive and can be disregarded', correct: true },
+        { text: 'B. The Struts module needs to be hardened on the server', correct: false },
+        { text: 'C. The Apache software on the server needs to be patched and updated', correct: false },
+        { text: 'D. The server has been compromised by malware and needs to be quarantined.', correct: false }
+      ]
+      },
+      {
+      question: "A security engineer is configuring a wireless network that must support mutual authentication of the wireless client and the authentication server before users provide credentials. The wireless network must also support authentication with usernames and passwords. Which of the following authentication protocols MUST the security engineer select?",
+      answers: [
+        { text: "A. EAP-FAST", correct: false },
+        { text: 'B. EAP-TLS', correct: true },
+        { text: 'C. PEAP', correct: false },
+        { text: 'D. EAP', correct: false }
+      ]
+      },
+      {
+      question: "An in-house penetration tester is using a packet capture device to listen in on network communications. This is an example of:",
+      answers: [
+        { text: 'A. Passive reconnaissance', correct: true },
+        { text: 'B. Persistence', correct: false },
+        { text: 'C. Escalation of privileges', correct: false },
+        { text: 'D. Exploiting the switch', correct: false }
+      ]
+      },
+      {
+      question: "A black hat hacker is enumerating a network and wants to remain covert during the process. The hacker initiates a vulnerability scan. Given the task at hand the requirement of being covert, which of the following statements BEST indicates that the vulnerability scan meets these requirements?",
+      answers: [
+        { text: 'A. The vulnerability scanner is performing an authenticated scan.', correct: false },
+        { text: 'B. The vulnerability scanner is performing local file integrity checks.', correct: false },
+        { text: 'C. The vulnerability scanner is performing in network sniffer mode.', correct: true },
+        { text: 'D. The vulnerability scanner is performing banner grabbing.', correct: false }
+      ]
+      },
+      {
+      question: "Which of the following cryptographic attacks would salting of passwords render ineffective?",
+      answers: [
+        { text: 'A. Brute force', correct: false },
+        { text: 'B. Dictionary', correct: false },
+        { text: 'C. Rainbow tables', correct: true },
+        { text: 'D. Birthday', correct: false }
+      ]
+      },
+      {
+        question: "A development team has adopted a new approach to projects in which feedback is iterative and multiple iterations of deployments are provided within an application's full life cycle. Which of the following software development methodologies is the development team using?",
+        answers: [
+          { text: 'A. Waterfall', correct: false },
+          { text: 'B. Agile', correct: true },
+          { text: 'C. Rapid', correct: false },
+          { text: 'D. Extreme', correct: false }
+        ]
+      },
+      {
+        question: "A Chief Executive Officer (CEO) suspects someone in the lab testing environment is stealing confidential information after working hours when no one else is around. Which of the following actions can help to prevent this specific threat?",
+        answers: [
+          { text: 'A. Implement time-of-day restrictions.', correct: true },
+          { text: 'B. Audit file access times.', correct: false },
+          { text: 'C. Secretly install a hidden surveillance camera.', correct: false },
+          { text: 'D. Require swipe-card access to enter the lab.', correct: false }
+        ]
+      },
+      {
+        question: "A company hires a third-party firm to conduct an assessment of vulnerabilities exposed to the Internet. The firm informs the company that an exploit exists for an FTP server that had a version installed from eight years ago. The company has decided to keep the system online anyway, as no upgrade exists form the vendor. Which of the following BEST describes the reason why the vulnerability exists?",
+        answers: [
+          { text: 'A. Default configuration', correct: false },
+          { text: 'B. End-of-life system', correct: true },
+          { text: 'C. Weak cipher suite', correct: false },
+          { text: 'D. Zero-day threats', correct: false }
+        ]
+      },
+      {
+        question: "Joe, a user, wants to send Ann, another user, a confidential document electronically. Which of the following should Joe do to ensure the document is protected from eavesdropping?",
+        answers: [
+          { text: "A. Encrypt it with Joe's private key", correct: false },
+          { text: "B. Encrypt it with Joe's public key", correct: false },
+          { text: "C. Encrypt it with Ann's private key", correct: false },
+          { text: "D. Encrypt it with Ann's public key", correct: true }
+        ]
+      },
+      // #5
+      {
+        question: "A director of IR is reviewing a report regarding several recent breaches. The director compiles the following statistic's\n -Initial IR engagement time frame\n -Length of time before an executive management notice went out\n -Average IR phase completion\n The director wants to use the data to shorten the response time. Which of the following would accomplish this?",
+        answers: [
+          { text: 'A. CSIRT', correct: false },
+          { text: 'B. Containment phase', correct: false },
+          { text: 'C. Escalation notifications', correct: false },
+          { text: 'D. Tabletop exercise', correct: true }
+        ]
+      },
+      {
+        question: "To reduce disk consumption, an organization's legal department has recently approved a new policy setting the data retention period for sent email at six months. Which of the following is the BEST way to ensure this goal is met?",
+        answers: [
+          { text: 'A. Create a daily encrypted backup of the relevant emails.', correct: false },
+          { text: 'B. Configure the email server to delete the relevant emails.', correct: true },
+          { text: 'C. Migrate the relevant emails into an "Archived" folder.', correct: false },
+          { text: 'D. Implement automatic disk compression on email servers.', correct: false }
+        ]
+      },
+      {
+        question: "A security administrator is configuring a new network segment, which contains devices that will be accessed by external users, such as web and FTP server. Which of the following represents the MOST secure way to configure the new network segment?",
+        answers: [
+          { text: 'A. The segment should be placed on a separate VLAN, and the firewall rules should be configured to allow external traffic.', correct: false },
+          { text: 'B. The segment should be placed in the existing internal VLAN to allow internal traffic only.', correct: false },
+          { text: 'C. The segment should be placed on an intranet, and the firewall rules should be configured to allow external traffic.', correct: false },
+          { text: 'D. The segment should be placed on an extranet, and the firewall rules should be configured to allow both internal and external traffic.', correct: true }
+        ]
+      },
+      {
+        question: "Which of the following types of attacks precedes the installation of a rootkit on a server?",
+        answers: [
+          { text: 'A. Pharming', correct: false },
+          { text: 'B. DDoS', correct: false },
+          { text: 'C. Privilege escalation', correct: true },
+          { text: 'D. DoS', correct: false }
+        ]
+      },
+      {
+        question: "Which of the following cryptographic algorithms is irreversible?",
+        answers: [
+          { text: 'A. RC4', correct: false },
+          { text: 'B. SHA-256', correct: false },
+          { text: 'C. DES', correct: false },
+          { text: 'D. AES', correct: true }
+        ]
+      },
+      // #10
+      {
+        question: 'A security analyst receives an alert from a WAF with the following payload: var data= "<test test test>" ++ <../../../../../../etc/passwd>". Which of the following types of attacks is this?',
+        answers: [
+          { text: 'A. Cross-site request forgery', correct: false },
+          { text: 'B. Buffer overflow', correct: false },
+          { text: 'C. SQL injection', correct: false },
+          { text: 'D. JavaScript data insertion', correct: true },
+          { text: 'E. Firewall evasion script', correct: false }
+        ]
+      },
+      {
+        question: "A workstation puts out a network request to locate another system. Joe, a hacker on the network, responds before the real system does, and he tricks the workstation into communicating with him. Which of the following BEST describes what occurred?",
+        answers: [
+          { text: 'A. The hacker used a race condition.', correct: false },
+          { text: 'B. The hacker used a pass-the-hash attack.', correct: false },
+          { text: 'C. The hacker-exploited improper key management.', correct: false },
+          { text: 'D. The hacker exploited weak switch configuration.', correct: true }
+        ]
+      },
+      {
+        question: "A security analyst wants to harden the company's VoIP PBX. The analyst is worried that credentials may be intercepted and compromised when IP phones authenticate with the PBX. Which of the following would best prevent this from occurring?",
+        answers: [
+          { text: 'A. Implement SRTP between the phones and the PBX.', correct: true },
+          { text: 'B. Place the phones and PBX in their own VLAN.', correct: false },
+          { text: 'C. Restrict the phone connections to the PBX.', correct: false },
+          { text: 'D. Require SIPS on connections to the PBX.', correct: false }
+        ]
+      },
+      {
+        question: "An organization is comparing and contrasting migration from its standard desktop configuration to the newest version of the platform. Before this can happen, the Chief Information Security Officer (CISO) voices the need to evaluate the functionality of the newer desktop platform to ensure interoperability with existing software in use by the organization. In which of the following principles of architecture and design is the CISO engaging?",
+        answers: [
+          { text: 'A. Dynamic analysis', correct: false },
+          { text: 'B. Change management', correct: true },
+          { text: 'C. Baselining', correct: false },
+          { text: 'D. Waterfalling', correct: false }
+        ]
+      },
+      {
+        question: "A user is presented with the following items during the new-hire onboarding process:\n -Laptop\n -Secure USB drive\n -Hardware OTP token\n -External high-capacity HDD\n -Password complexity policy\n -Acceptable use policy\n -HASP key\n -Cable lock\n Which of the following is one component of multifactor authentication?",
+        answers: [
+          { text: 'A. Secure USB drive', correct: false },
+          { text: 'B. Cable lock', correct: false },
+          { text: 'C. Hardware OTP token', correct: true },
+          { text: 'D. HASP key', correct: false }
+        ]
+      },
+      //15
+      {
+        question: "An organization requires users to provide their fingerprints to access an application. To improve security, the application developers intend to implement multifactor authentication. Which of the following should be implemented?",
+        answers: [
+          { text: 'A. Use a camera for facial recognition', correct: false },
+          { text: 'B. Have users sign their name naturally', correct: true },
+          { text: 'C. Require a palm geometry scan', correct: false },
+          { text: 'D. Implement iris recognition', correct: false }
+        ]
+      },
+      {
+        question: "A network technician is setting up a segmented network that will utilize a separate ISP to provide wireless access to the public area for a company. Which of the following wireless security methods should the technician implement to provide basic accountability for access to the public network?",
+        answers: [
+          { text: 'A. Pre-shared key', correct: false },
+          { text: 'B. Enterprise', correct: false },
+          { text: 'C. Wi-Fi Protected setup', correct: false },
+          { text: 'D. Captive portal', correct: true }
+        ]
+      },
+      {
+        question: "After a routine audit, a company discovers that engineering documents have been leaving the network on a particular port. The company must allow outbound traffic on this port, as it has a legitimate business use. Blocking the port would cause an outage. Which of the following technology controls should the company implement?",
+        answers: [
+          { text: 'A. NAC', correct: false },
+          { text: 'B. Web proxy', correct: false },
+          { text: 'C. DLP', correct: true },
+          { text: 'D. ACL', correct: false }
+        ]
+      },
+      {
+        question: "An organization's primary datacenter is experiencing a two-day outage due to an HVAC malfunction. The node located in the datacenter has lost power and is no longer operational, impacting the ability of all users to connect to the alternate datacenter. Which of the following BIA concepts BEST represents the risk described in this scenario?",
+        answers: [
+          { text: 'A. SPoF', correct: true },
+          { text: 'B. RTO', correct: false },
+          { text: 'C. MTBF', correct: false },
+          { text: 'D. MTTR', correct: false }
+        ]
+      },
+      {
+        question: "A security analyst notices anomalous activity coming from several workstations in the organizations. Upon identifying and containing the issue, which of the following should the security analyst do NEXT?",
+        answers: [
+          { text: 'A. Document and lock the workstations in a secure area to establish chain of custody', correct: false },
+          { text: 'B. Notify the IT department that the workstations are to be reimaged and the data restored for reuse', correct: false },
+          { text: 'C. Notify the IT department that the workstations may be reconnected to the network for the users to continue working', correct: false },
+          { text: 'D. Document findings and processes in the after-action and lessons learned reportS', correct: true }
+        ]
+      },
+      // #20
+      {
+      question: "An employee receives an email, which appears to be from the Chief Executive Officer (CEO), asking for a report of security credentials for all users. Which of the following types of attack is MOST likely occurring?",
+      answers: [
+        { text: 'A. Policy violation', correct: false },
+        { text: 'B. Social engineering', correct: false },
+        { text: 'C. Whaling', correct: false },
+        { text: 'D. Spear phishing', correct: true }
+      ]
+      },
+      {
+      question: "An information security analyst needs to work with an employee who can answer questions about how data for a specific system is used in the business. The analyst should seek out an employee who has the role of:",
+      answers: [
+        { text: 'A. steward', correct: false },
+        { text: 'B. owner', correct: true },
+        { text: 'C. privacy officer', correct: false },
+        { text: 'D. systems administrator', correct: false }
+      ]
+      },
+      {
+      question: "A group of non-profit agencies wants to implement a cloud service to share resources with each other and minimize costs. Which of the following cloud deployment models BEST describes this type of effort?",
+      answers: [
+        { text: 'A. Public', correct: false },
+        { text: 'B. Hybrid', correct: false },
+        { text: 'C. Community', correct: true },
+        { text: 'D. Private', correct: false }
+      ]
+      },
+      {
+      question: "A company is developing a new system that will unlock a computer automatically when an authorized user sits in front of it, and then lock the computer when the user leaves. The user does not have to perform any action for this process to occur. Which of the following technologies provides this capability?",
+      answers: [
+        { text: 'A. Facial recognition', correct: true },
+        { text: 'B. Fingerprint scanner', correct: false },
+        { text: 'C. Motion detector', correct: false },
+        { text: 'D. Smart cards', correct: false }
+      ]
+      },
+      {
+      question: "A security analyst accesses corporate web pages and inputs random data in the forms. The response received includes the type of database used and SQL commands that the database accepts. Which of the following should the security analyst use to prevent this vulnerability?",
+      answers: [
+        { text: 'A. Application fuzzing', correct: false },
+        { text: 'B. Error handling', correct: false },
+        { text: 'C. Input validation', correct: true },
+        { text: 'D. Pointer dereference', correct: false }
+      ]
+      },
+      // #25
+      {
+      question: "Which of the following differentiates a collision attack from a rainbow table attack?",
+      answers: [
+        { text: 'A. A rainbow table attack performs a hash lookup', correct: true },
+        { text: 'B. A rainbow table attack uses the hash as a password', correct: false },
+        { text: 'C. In a collision attack, the hash and the input data are equivalent', correct: false },
+        { text: 'D. In a collision attack, the same input results in different hashes', correct: false }
+      ]
+      },
+      {
+      question: "A help desk is troubleshooting user reports that the corporate website is presenting untrusted certificate errors to employees and customers when they visit the website. Which of the following is the MOST likely cause of this error, provided the certificate has not expired?",
+      answers: [
+        { text: 'A. The certificate was self signed, and the CA was not imported by employees or customers', correct: true },
+        { text: 'B. The root CA has revoked the certificate of the intermediate CA', correct: false },
+        { text: 'C. The valid period for the certificate has passed, and a new certificate has not been issued', correct: false },
+        { text: 'D. The key escrow server has blocked the certificate from being validated', correct: false }
+      ]
+      },
+      {
+      question: "A security administrator is trying to encrypt communication. For which of the following reasons should administrator take advantage of the Subject Alternative Name (SAN) attribute of a certificate?",
+      answers: [
+        { text: 'A. It can protect multiple domains', correct: true },
+        { text: 'B. It provides extended site validation', correct: false },
+        { text: 'C. It does not require a trusted certificate authority', correct: false },
+        { text: 'D. It protects unlimited subdomains', correct: false }
+      ]
+      },
+      {
+      question: "A new mobile application is being developed in-house. Security reviews did not pick up any major flaws, however vulnerability scanning results show fundamental issues at the very end of the project cycle. Which of the following security activities should also have been performed to discover vulnerabilities earlier in the lifecycle?",
+      answers: [
+        { text: 'A. Architecture review', correct: false },
+        { text: 'B. Risk assessment', correct: false },
+        { text: 'C. Protocol analysis', correct: false },
+        { text: 'D. Code review', correct: true }
+      ]
+      },
+      {
+      question: "A security administrator is creating a subnet on one of the corporate firewall interfaces to use as a DMZ which is expected to accommodate at most 14 physical hosts. Which of the following subnets would BEST meet the requirements?",
+      answers: [
+        { text: 'A. 192.168.0.16 255.25.255.248', correct: false },
+        { text: 'B. 192.168.0.16/28', correct: true },
+        { text: 'C. 192.168.1.50 255.255.25.240', correct: false },
+        { text: 'D. 192.168.2.32/27', correct: false }
+      ]
+      },
+      // #30
+      {
+      question: "The security administrator receives an email on a non-company account from a coworker stating that some reports are not exporting correctly. Attached to the email was an example report file with several customers' names and credit card numbers with the PIN. Which of the following is the BEST technical controls that will help mitigate this risk of disclosing sensitive data?",
+      answers: [
+        { text: 'A. Configure the mail server to require TLS connections for every email to ensure all transport data is encrypted', correct: false },
+        { text: 'B. Create a user training program to identify the correct use of email and perform regular audits to ensure compliance', correct: false },
+        { text: 'C. Implement a DLP solution on the email gateway to scan email and remove sensitive data or files', correct: true },
+        { text: 'D. Classify all data according to its sensitivity and inform the users of data that is prohibited to share', correct: false }
+      ]
+      },
+      {
+      question: "A technician is configuring a wireless guest network. After applying the most recent changes the technician finds the new devices can no longer find the wireless network by name but existing devices are still able to use the wireless network. Which of the following security measures did the technician MOST likely implement to cause this Scenario?",
+      answers: [
+        { text: 'A. Deactivation of SSID broadcast', correct: true },
+        { text: 'B. Reduction of WAP signal output power', correct: false },
+        { text: 'C. Activation of 802.1X with RADIUS', correct: false },
+        { text: 'D. Implementation of MAC filtering', correct: false },
+        { text: 'E. Beacon interval was decreased', correct: false }
+      ]
+      },
+      {
+      question: "Although a web enabled application appears to only allow letters in the comment field of a web form, malicious user was able to carry a SQL injection attack by sending special characters through the web comment field. Which of the following has the application programmer failed to implement?",
+      answers: [
+        { text: 'A. Revision control system', correct: false },
+        { text: 'B. Client side exception handling', correct: false },
+        { text: 'C. Server side validation', correct: true },
+        { text: 'D. Server hardening', correct: false }
+      ]
+      },
+      // #35
+      {
+      question: "An attacker discovers a new vulnerability in an enterprise application. The attacker takes advantage of the vulnerability by developing new malware. After installing the malware, the attacker is provided with access to the infected machine. Which of the following is being described?",
+      answers: [
+        { text: 'A. Zero-day exploit', correct: true },
+        { text: 'B. Remote code execution', correct: false },
+        { text: 'C. Session hijacking', correct: false },
+        { text: 'D. Command injection', correct: false }
+      ]
+      },
+      {
+      question: "A security administrator returning from a short vacation receives an account lock-out message when attempting to log into the computer. After getting the account unlocked the security administrator immediately notices a large amount of emails alerts pertaining to several different user accounts being locked out during the past three days. The security administrator uses system logs to determine that the lock-outs were due to a brute force attack on all accounts that has been previously logged into that machine. Which of the following can be implemented to reduce the likelihood of this attack going undetected?",
+      answers: [
+        { text: 'A. Password complexity rules', correct: false },
+        { text: 'B. Continuous monitoring', correct: true },
+        { text: 'C. User access reviews', correct: false },
+        { text: 'D. Account lockout policies', correct: false }
+      ]
+      },
+      {
+      question: "A company has a security policy that specifies all endpoint computing devices should be assigned a unique identifier that can be tracked via an inventory management system. Recent changes to airline security regulations have cause many executives in the company to travel with mini tablet devices instead of laptops. These tablet devices are difficult to tag and track. An RDP application is used from the tablet to connect into the company network. Which of the following should be implemented in order to meet the security policy requirements?",
+      answers: [
+        { text: 'A. Virtual desktop infrastructure (IDI)', correct: false },
+        { text: 'B. WS-security and geo-fencing', correct: false },
+        { text: 'C. A hardware security module (HSM)', correct: false },
+        { text: 'D. RFID tagging system', correct: false },
+        { text: 'E. MDM software', correct: true },
+        { text: 'F. Security Requirements Traceability Matrix (SRTM)', correct: false }
+      ]
+      },
+      {
+      question: "A bank requires tellers to get manager approval when a customer wants to open a new account. A recent audit shows that there have been four cases in the previous year where tellers opened accounts without management approval. The bank president thought separation of duties would prevent this from happening. In order to implement a true separation of duties approach the bank could:",
+      answers: [
+        { text: 'A. Require the use of two different passwords held by two different individuals to open an account', correct: false },
+        { text: 'B. Administer account creation on a role based access control approach', correct: true },
+        { text: 'C. Require all new accounts to be handled by someone else other than a teller since they have different duties', correct: false },
+        { text: 'D. Administer account creation on a rule based access control approach', correct: false }
+      ]
+      },
+      {
+      question: "A security administrator has been tasked with improving the overall security posture related to desktop machines on the network. An auditor has recently that several machines with confidential customer information displayed in the screens are left unattended during the course of the day. Which of the following could the security administrator implement to reduce the risk associated with the finding?",
+      answers: [
+        { text: 'A. Implement a clean desk policy', correct: false },
+        { text: 'B. Security training to prevent shoulder surfing', correct: false },
+        { text: 'C. Enable group policy based screensaver timeouts', correct: true },
+        { text: 'D. Install privacy screens on monitors', correct: false }
+      ]
+      },
+      // #40
+      {
+      question: "Company policy requires the use if passphrases instead if passwords. Which of the following technical controls MUST be in place in order to promote the use of passphrases?",
+      answers: [
+        { text: 'A. Reuse ', correct: false },
+        { text: 'B. Length', correct: true },
+        { text: 'C. History', correct: false },
+        { text: 'D. Complexity', correct: false }
+      ]
+      },
+      {
+      question: "During a routine audit, it is discovered that someone has been using a stale administrator account to log into a seldom used server. The person has been using the server to view inappropriate websites that are prohibited to end users. Which of the following could best prevent this from occurring again?",
+      answers: [
+        { text: 'A. Credential management', correct: false },
+        { text: 'B. Group policy management', correct: false },
+        { text: 'C. Acceptable use policy', correct: false },
+        { text: 'D. Account expiration policy', correct: true }
+      ]
+      },
+      {
+      question: "Which of the following should identify critical systems and components?",
+      answers: [
+        { text: 'A. MOU', correct: false },
+        { text: 'B. BPA', correct: false },
+        { text: 'C. ITCP', correct: false },
+        { text: 'D. BCP', correct: true }
+      ]
+      },
+      {
+      question: "Which of the following works by implanting software on systems but delays execution until a specific set of conditions is met?",
+      answers: [
+        { text: 'A. Logic bomb', correct: true },
+        { text: 'B. Trojan', correct: false },
+        { text: 'C. Scareware', correct: false },
+        { text: 'D. Ransomware', correct: false }
+      ]
+      },
+      {
+      question: "A web application is configured to target browsers and allow access to bank accounts to siphon money to a foreign account. This is an example of which of the following attacks?",
+      answers: [
+        { text: 'A. SQL injection', correct: false },
+        { text: 'B. Header manipulation', correct: false },
+        { text: 'C. Cross-site scripting', correct: true },
+        { text: 'D. Flash cookie exploitation', correct: false }
+      ]
+      },
+      // #45
+      {
+      question: "Technicians working with servers hosted at the company's datacenter are increasingly complaining of electric shocks when touching metal items which have been linked to hard drive failures. Which of the following should be implemented to correct this issue?",
+      answers: [
+        { text: 'A. Decrease the room temperature', correct: false },
+        { text: 'B. Increase humidity in the room', correct: true },
+        { text: 'C. Utilize better hot/cold aisle configurations', correct: false },
+        { text: 'D. Implement EMI shielding', correct: false }
+      ]
+      },
+      {
+      question: "A portable data storage device has been determined to have malicious firmware. Which of the following is the BEST course of action to ensure data confidentiality?",
+      answers: [
+        { text: "A. Format the device", correct: true },
+        { text: 'B. Re-image the device', correct: false },
+        { text: 'C. Perform virus scan in the device', correct: false },
+        { text: 'D. Physically destroy the device', correct: false }
+      ]
+      },
+      {
+      question: "A security administrator must implement a system to ensure that invalid certificates are not used by a custom developed application. The system must be able to check the validity of certificates even when internet access is unavailable. Which of the following MUST be implemented to support this requirement?",
+      answers: [
+        { text: 'A. CSR', correct: false },
+        { text: 'B. OCSP', correct: false },
+        { text: 'C. CRL', correct: true },
+        { text: 'D. SSH', correct: false }
+      ]
+      },
+      {
+      question: "A technician has installed new vulnerability scanner software on a server that is joined to the company domain. The vulnerability scanner is able to provide visibility over the patch posture of all company's clients. Which of the following is being used?",
+      answers: [
+        { text: 'A. Gray box vulnerability testing', correct: false },
+        { text: 'B. Passive scan', correct: false },
+        { text: 'C. Credentialed scan', correct: true },
+        { text: 'D. Bypassing security controls', correct: false }
+      ]
+      },
+      {
+      question: 'While reviewing the monthly internet usage it is noted that there is a large spike in traffic classified as "unknown" and does not appear to be within the bounds of the organizations Acceptable Use Policy. Which of the following tool or technology would work BEST for obtaining more information on this traffic?',
+      answers: [
+        { text: 'A. Firewall logs', correct: false },
+        { text: 'B. IDS logs', correct: true },
+        { text: 'C. Increased spam filtering', correct: false },
+        { text: 'D. Protocol analyzer', correct: false }
+      ]
+      },
+      {
+      question: 'A network administrator wants to ensure that users do not connect any unauthorized devices to the company network. Each desk needs to connect a VoIP phone and computer. Which of the following is the BEST way to accomplish this?',
+      answers: [
+        { text: 'A. Enforce authentication for network devices', correct: true },
+        { text: 'B. Configure the phones on one VLAN, and computers on another', correct: false },
+        { text: 'C. Enable and configure port channels', correct: false },
+        { text: 'D. Make users sign an Acceptable use Agreement', correct: false }
+      ]
+      },
+      {
+      question: 'An administrator has concerns regarding the traveling sales team who works primarily from smart phones. Given the sensitive nature of their work, which of the following would BEST prevent access to the data in case of loss or theft?',
+      answers: [
+        { text: 'A. Enable screensaver locks when the phones are not in use to prevent unauthorized access', correct: false },
+        { text: 'B. Configure the smart phones so that the stored data can be destroyed from a centralized location', correct: true },
+        { text: 'C. Configure the smart phones so that all data is saved to removable media and kept separate from the device', correct: false },
+        { text: 'D. Enable GPS tracking on all smart phones so that they can be quickly located and recovered', correct: false }
+      ]
+      },
+      {
+      question: 'A user of the wireless network is unable to gain access to the network. The symptoms are:\n1.) Unable to connect to both internal and Internet resources\n2.) The wireless icon shows connectivity but has no network access\nThe wireless network is WPA2 Enterprise and users must be a member of the wireless security group to authenticate. Which of the following is the MOST likely cause of the connectivity issues?',
+      answers: [
+        { text: 'A. The wireless signal is not strong enough', correct: false },
+        { text: 'B. A remote DDoS attack against the RADIUS server is taking place', correct: false },
+        { text: "C. The user's laptop only supports WPA and WEP", correct: true },
+        { text: 'D. The DHCP scope is full', correct: false },
+        { text: 'E. The dynamic encryption key did not update while the user was offline', correct: false }
+      ]
+      },
+      {
+      question: 'A mobile device user is concerned about geographic positioning information being included in messages sent between users on a popular social network platform. The user turns off the functionality in the application, but wants to ensure the application cannot re-enable the setting without the knowledge of the user. Which of the following mobile device capabilities should the user disable to achieve the stated goal?',
+      answers: [
+        { text: 'A. Device access control', correct: false },
+        { text: 'B. Location based services', correct: true },
+        { text: 'C. Application control', correct: false },
+        { text: 'D. GEO-Tagging', correct: false }
+      ]
+      },
+      {
+      question: 'A member of a digital forensics team, Joe arrives at a crime scene and is preparing to collect system data. Before powering the system off, Joe knows that he must collect the most volatile date first. Which of the following is the correct order in which Joe should collect the data?',
+      answers: [
+        { text: 'A. CPU cache, paging/swap files, RAM, remote logging data', correct: false },
+        { text: 'B. RAM, CPU cache. Remote logging data, paging/swap files', correct: false },
+        { text: 'C. Paging/swap files, CPU cache, RAM, remote logging data', correct: false },
+        { text: 'D. CPU cache, RAM, paging/swap files, remote logging data', correct: true }
+      ]
+      },
+      {
+      question: 'An organization has hired a penetration tester to test the security of its ten web servers. The penetration tester is able to gain root/administrative access in several servers by exploiting vulnerabilities associated with the implementation of SMTP, POP, DNS, FTP, Telnet, and IMAP. Which of the following recommendations should the penetration tester provide to the organization to better protect their web servers in the future?',
+      answers: [
+        { text: 'A. Use a honeypot', correct: false },
+        { text: 'B. Disable unnecessary services', correct: true },
+        { text: 'C. Implement transport layer security', correct: false },
+        { text: 'D. Increase application event logging', correct: false }
+      ]
+      },
+      {
+      question: 'A security engineer is faced with competing requirements from the networking group and database administrators. The database administrators would like ten application servers on the same subnet for ease of administration, whereas the networking group would like to segment all applications from one another. Which of the following should the security administrator do to rectify this issue?',
+      answers: [
+        { text: 'A. Recommend performing a security assessment on each application, and only segment the applications with the most vulnerability', correct: false },
+        { text: 'B. Recommend classifying each application into like security groups and segmenting the groups from one another', correct: true },
+        { text: 'C. Recommend segmenting each application, as it is the most secure approach', correct: false },
+        { text: 'D. Recommend that only applications with minimal security features should be segmented to protect them', correct: false }
+      ]
+      },
+      {
+      question: "A security analyst has been asked to perform a review of an organization's software development lifecycle. The analyst reports that the lifecycle does not contain a phase in which team members evaluate and provide critical feedback of another developer's code. Which of the following assessment techniques is BEST described in the analyst's report?",
+      answers: [
+        { text: 'A. Architecture evaluation', correct: false },
+        { text: 'B. Baseline reporting', correct: false },
+        { text: 'C. Whitebox testing', correct: false },
+        { text: 'D. Peer review', correct: true }
+      ]
+      },
+      {
+      question: "An attacker wearing a building maintenance uniform approached a company's receptionist asking for access to a secure area. The receptionist asks for identification, a building access badge and checks the company's list approved maintenance personnel prior to granting physical access to the secure are. The controls used by the receptionist are in place to prevent which of the following types of attacks?",
+      answers: [
+        { text: 'A. Tailgating', correct: false },
+        { text: 'B. Shoulder surfing', correct: false },
+        { text: 'C. Impersonation', correct: true },
+        { text: 'D. Hoax', correct: false }
+      ]
+      },
+      {
+      question: 'A security administrator is tasked with conducting an assessment made to establish the baseline security posture of the corporate IT infrastructure. The assessment must report actual flaws and weaknesses in the infrastructure. Due to the expense of hiring outside consultants, the testing must be performed using in-house or cheaply available resource. There cannot be a possibility of any requirement being damaged in the test. Which of the following has the administrator been tasked to perform?',
+      answers: [
+        { text: 'A. Risk transference', correct: false },
+        { text: 'B. Penetration test', correct: false },
+        { text: 'C. Threat assessment', correct: false },
+        { text: 'D. Vulnerability assessment', correct: true }
+      ]
+      },
+      {
+      question: 'A network administrator is attempting to troubleshoot an issue regarding certificates on a secure website. During the troubleshooting process, the network administrator notices that the web gateway proxy on the local network has signed all of the certificates on the local machine. Which of the following describes the type of attack the proxy has been legitimately programmed to perform?',
+      answers: [
+        { text: 'A. Transitive access', correct: true },
+        { text: 'B. Spoofing', correct: false },
+        { text: 'C. Man-in-the-middle', correct: false },
+        { text: 'D. Replay', correct: false }
+      ]
+      },
+      {
+      question: 'Which of the following use the SSH protocol?',
+      answers: [
+        { text: 'A. Stelnet', correct: false },
+        { text: 'B. SNMP', correct: false },
+        { text: 'C. FTPS', correct: false },
+        { text: 'D. SFTP', correct: true }
+      ]
+      },
+      {
+      question: 'Which of the following is the GREATEST risk to a company by allowing employees to physically bring their personal smartphones to work?',
+      answers: [
+        { text: 'A. Taking pictures of proprietary information and equipment in restricted areas.', correct: true },
+        { text: "B. Installing soft token software to connect to the company's wireless network.", correct: false },
+        { text: 'C. Company cannot automate patch management on personally-owned devices.', correct: false },
+        { text: "D. Increases the attack surface by having more target devices on the company's campus", correct: false }
+      ]
+      },
+      {
+      question: 'Which of the following is the summary of loss for a given year?',
+      answers: [
+        { text: 'A. MTBF', correct: false },
+        { text: 'B. ALE', correct: true },
+        { text: 'C. SLA', correct: false },
+        { text: 'D. ARO', correct: false }
+      ]
+      },
+      {
+      question: 'A Security Officer on a military base needs to encrypt several smart phones that will be going into the field. Which of the following encryption solutions should be deployed in this situation?',
+      answers: [
+        { text: 'A. Elliptic curve', correct: false },
+        { text: 'B. One-time pad', correct: false },
+        { text: 'C. 3DES', correct: false },
+        { text: 'D. AES-256', correct: true }
+      ]
+      },
+
+      {
+      question: 'A technician must configure a firewall to block external DNS traffic from entering a network. Which of the following ports should they block on the firewall?',
+      answers: [
+        { text: 'A. 53', correct: true },
+        { text: 'B. 110', correct: false },
+        { text: 'C. 143', correct: false },
+        { text: 'D. 443', correct: false }
+      ]
+      },
+      {
+      question: "A software development company needs to share information between two remote servers, using encryption to protect it. A programmer suggests developing a new encryption protocol, arguing that using an unknown protocol with secure, existing cryptographic algorithm libraries will provide strong encryption without being susceptible to attacks on other known protocols. Which of the following summarizes the BEST response to the programmer's proposal?",
+      answers: [
+        { text: 'A. The newly developed protocol will only be as secure as the underlying cryptographic algorithms used.', correct: false },
+        { text: 'B. New protocols often introduce unexpected vulnerabilities, even when developed with otherwise secure and tested algorithm libraries.', correct: true },
+        { text: 'C. A programmer should have specialized training in protocol development before attempting to design a new encryption protocol.', correct: false },
+        { text: 'D. The obscurity value of unproven protocols against attacks often outweighs the potential for introducing new vulnerabilities.', correct: false }
+      ]
+      },
+      {
+      question: 'A security technician would like to obscure sensitive data within a file so that it can be transferred without causing suspicion. Which of the following technologies would BEST be suited to accomplish this?',
+      answers: [
+        { text: 'A. Transport Encryption', correct: false },
+        { text: 'B. Stream Encryption', correct: false },
+        { text: 'C. Digital Signature', correct: false },
+        { text: 'D. Steganography', correct: true }
+      ]
+      },
+
+      {
+      question: 'A supervisor in your organization was demoted on Friday afternoon. The supervisor had the ability to modify the contents of a confidential database, as well as other managerial permissions. On Monday morning, the database administrator reported that log files indicated that several records were missing from the database. Which of the following risk mitigation strategies should have been implemented when the supervisor was demoted?',
+      answers: [
+        { text: 'A. Incident management', correct: false },
+        { text: 'B. Routine auditing', correct: true },
+        { text: 'C. IT governance', correct: false },
+        { text: 'D. Monthly user rights reviews', correct: false }
+      ]
+      },
+      {
+      question: 'Which of the following attack types is being carried out where a target is being sent unsolicited messages via Bluetooth?',
+      answers: [
+        { text: 'A. War chalking', correct: false },
+        { text: 'B. Bluejacking', correct: true },
+        { text: 'C. Bluesnarfing', correct: false },
+        { text: 'D. Rogue tethering', correct: false }
+      ]
+      },
+      {
+      question: 'Joe is exchanging encrypted email with another party. Joe encrypts the initial email with a key. When Joe receives a response, he is unable to decrypt the response with the same key he used initially. Which of the following would explain the situation?',
+      answers: [
+        { text: 'A. An ephemeral key was used for one of the messages', correct: false },
+        { text: 'B. A stream cipher was used for the initial email; a block cipher was used for the reply', correct: false },
+        { text: 'C. Out-of-band key exchange has taken place', correct: false },
+        { text: 'D. Asymmetric encryption is being used', correct: true }
+      ]
+      },
+
+            {
+            question: 'Recently several employees were victims of a phishing email that appeared to originate from the company president. The email claimed the employees would be disciplined if they did not click on a malicious link in the message. Which of the following principles of social engineering made this attack successful?',
+            answers: [
+              { text: 'A. Authority', correct: true },
+              { text: 'B. Spamming', correct: false },
+              { text: 'C. Social proof', correct: false },
+              { text: 'D. Scarcity', correct: false }
+            ]
+            },
+            {
+            question: 'Which of the following is the LEAST secure hashing algorithm?',
+            answers: [
+              { text: 'A. SHA1', correct: false },
+              { text: 'B. RIPEMD', correct: false },
+              { text: 'C. MD5', correct: true },
+              { text: 'D. DES', correct: false }
+            ]
+            },
+            {
+            question: 'An employee uses RDP to connect back to the office network. If RDP is misconfigured, which of the following security exposures would this lead to?',
+            answers: [
+              { text: "A. A virus on the administrator's desktop would be able to sniff the administrator's username and password.", correct: false },
+              { text: "B. Result in an attacker being able to phish the employee's username and password.", correct: false },
+              { text: "C. A social engineering attack could occur, resulting in the employee's password being extracted.", correct: false },
+              { text: "D. A man in the middle attack could occur, resulting the employee's username and password being captured.", correct: true }
+            ]
+            },
+            {
+            question: 'Joe, the security administrator, sees this in a vulnerability scan report: "The server 10.1.2.232 is running Apache 2.2.20 which may be vulnerable to a mod_cgi exploit." Joe verifies that the mod_cgi module is not enabled on 10.1.2.232. This message is an example of:',
+            answers: [
+              { text: 'A. a threat.', correct: false },
+              { text: 'B. a risk.', correct: false },
+              { text: 'C. a false negative.', correct: false },
+              { text: 'D. a false positive.', correct: true }
+            ]
+            },
+            {
+            question: 'An auditor has identified an access control system that can incorrectly accept an access attempt from an unauthorized user. Which of the following authentication systems has the auditor reviewed?',
+            answers: [
+              { text: 'A. Password-based', correct: false },
+              { text: 'B. Biometric-based', correct: true },
+              { text: 'C. Location-based', correct: false },
+              { text: 'D. Certificate-based', correct: false }
+            ]
+            },
+            {
+            question: 'The Chief Technology Officer (CTO) of a company, Ann, is putting together a hardware budget for the next 10 years. She is asking for the average lifespan of each hardware device so that she is able to calculate when she will have to replace each device. Which of the following categories BEST describes what she is looking for?',
+            answers: [
+              { text: 'A. ALE', correct: false },
+              { text: 'B. MTTR', correct: false },
+              { text: 'C. MTBF', correct: false },
+              { text: 'D. MTTF', correct: true }
+            ]
+            },
+
+            {
+            question: 'A security guard has informed the Chief Information Security Officer that a person with a tablet has been walking around the building. The guard also noticed strange white markings in different areas of the parking lot. The person is attempting which of the following types of attacks?',
+            answers: [
+              { text: 'A. Jamming', correct: false },
+              { text: 'B. War chalking', correct: true },
+              { text: 'C. Packet sniffing', correct: false },
+              { text: 'D. Near field communication', correct: false }
+            ]
+            },
+            {
+            question: 'A system administrator is configuring a site-to-site VPN tunnel. Which of the following should be configured on the VPN concentrator during the IKE phase?',
+            answers: [
+              { text: 'A. RIPEMD', correct: false },
+              { text: 'B. ECDHE', correct: false },
+              { text: 'C. Diffie-Hellman', correct: true },
+              { text: 'D. HTTPS', correct: false }
+            ]
+            },
+            {
+            question: 'A network operations manager has added a second row of server racks in the datacenter. These racks face the opposite direction of the first row of racks. Which of the following is the reason the manager installed the racks this way?',
+            answers: [
+              { text: 'A. To lower energy consumption by sharing power outlets', correct: false },
+              { text: 'B. To create environmental hot and cold isles', correct: true },
+              { text: 'C. To eliminate the potential for electromagnetic interference', correct: false },
+              { text: 'D. To maximize fire suppression capabilities', correct: false }
+            ]
+            },
+
+            {
+            question: 'Phishing emails frequently take advantage of high-profile catastrophes reported in the news. Which of the following principles BEST describes the weakness being exploited?',
+            answers: [
+              { text: 'A. Intimidation', correct: false },
+              { text: 'B. Scarcity', correct: false },
+              { text: 'C. Authority', correct: false },
+              { text: 'D. Social proof', correct: true }
+            ]
+            },
+            {
+            question: 'New magnetic locks were ordered for an entire building. In accordance with company policy, employee safety is the top priority. In case of a fire where electricity is cut, which of the following should be taken into consideration when installing the new locks?',
+            answers: [
+              { text: 'A. Fail safe', correct: true },
+              { text: 'B. Fault tolerance', correct: false },
+              { text: 'C. Fail secure', correct: false },
+              { text: 'D. Redundancy', correct: false }
+            ]
+            },
+            {
+            question: 'An administrator discovers the following log entry on a server:\n Nov 12 2013 00:23:45 httpd[2342]: GET /app2/prod/proc/process.php?input=change;cd%20../../../etc;cat%20shadow\n Which of the following attacks is being attempted?',
+            answers: [
+              { text: 'A. Command injection', correct: true },
+              { text: 'B. Password attack', correct: false },
+              { text: 'C. Buffer overflow', correct: false },
+              { text: 'D. Cross-site scripting', correct: false }
+            ]
+            },
+
+            {
+            question: 'A security team wants to establish an Incident Response plan. The team has never experienced an incident. Which of the following would BEST help them establish plans and procedures?',
+            answers: [
+              { text: 'A. Table top exercises', correct: true },
+              { text: 'B. Lessons learned', correct: false },
+              { text: 'C. Escalation procedures', correct: false },
+              { text: 'D. Recovery procedures', correct: false }
+            ]
+            },
+            {
+            question: 'Which of the following would verify that a threat does exist and security controls can easily be bypassed without actively testing an application?',
+            answers: [
+              { text: 'A. Protocol analyzer', correct: false },
+              { text: 'B. Vulnerability scan', correct: true },
+              { text: 'C. Penetration test', correct: false },
+              { text: 'D. Port scanner', correct: false }
+            ]
+            },
+            {
+            question: 'Which of the following technologies would be MOST appropriate to utilize when testing a new software patch before a company-wide deployment?',
+            answers: [
+              { text: 'A. Cloud computing', correct: false },
+              { text: 'B. Virtualization', correct: true },
+              { text: 'C. Redundancy', correct: false },
+              { text: 'D. Application control', correct: false }
+            ]
+            },
+            {
+            question: 'A system administrator needs to implement 802.1x whereby when a user logs into the network, the authentication server communicates to the network switch and assigns the user to the proper VLAN. Which of the following protocols should be used?',
+            answers: [
+              { text: 'A. RADIUS', correct: true },
+              { text: 'B. Kerberos', correct: false },
+              { text: 'C. LDAP', correct: false },
+              { text: 'D. MSCHAP', correct: false }
+            ]
+            },
+            {
+            question: 'A security administrator receives notice that a third-party certificate authority has been compromised, and new certificates will need to be issued. Which of the following should the administrator submit to receive a new certificate?',
+            answers: [
+              { text: 'A. CRL', correct: false },
+              { text: 'B. OSCP', correct: false },
+              { text: 'C. PFX', correct: false },
+              { text: 'D. CSR', correct: true },
+              { text: 'E. CA', correct: false }
+            ]
+            },
+            {
+            question: 'A company wants to host a publicly available server that performs the following functions:\n Evaluates MX record lookup\n Can perform authenticated requests for A and AAA records\n Uses RRSIG\n Which of the following should the company use to fulfill the above requirements?',
+            answers: [
+              { text: 'A. DNSSEC', correct: true },
+              { text: 'B. SFTP', correct: false },
+              { text: 'C. nslookup', correct: false },
+              { text: 'D. dig', correct: false },
+              { text: 'E. LDAPS', correct: false }
+            ]
+            },
+
+            {
+            question: 'A security administrator is developing training for corporate users on basic security principles for personal email accounts. Which of the following should be mentioned as the MOST secure way for password recovery?',
+            answers: [
+              { text: 'A. Utilizing a single Qfor password recovery', correct: false },
+              { text: 'B. Sending a PIN to a smartphone through text message', correct: true },
+              { text: 'C. Utilizing CAPTCHA to avoid brute force attacks', correct: false },
+              { text: 'D. Use a different e-mail address to recover password', correct: false }
+            ]
+            },
+            {
+            question: 'A company researched the root cause of a recent vulnerability in its software. It was determined that the vulnerability was the result of two updates made in the last release. Each update alone would not have resulted in the vulnerability. In order to prevent similar situations in the future, the company should improve which of the following?',
+            answers: [
+              { text: 'A. Change management procedures', correct: true },
+              { text: 'B. Job rotation policies', correct: false },
+              { text: 'C. Incident response management', correct: false },
+              { text: 'D. Least privilege access controls', correct: false }
+            ]
+            },
+            {
+            question: 'A computer on a company network was infected with a zero-day exploit after an employee accidently opened an email that contained malicious content. The employee recognized the email as malicious and was attempting to delete it, but accidently opened it. Which of the following should be done to prevent this scenario from occurring again in the future?',
+            answers: [
+              { text: 'A. Install host-based firewalls on all computers that have an email client installed', correct: false },
+              { text: 'B. Set the email program default to open messages in plain text', correct: true },
+              { text: 'C. Install end-point protection on all computers that access web email', correct: false },
+              { text: 'D. Create new email spam filters to delete all messages from that sender', correct: false }
+            ]
+            },
+            {
+            question: 'A company wants to ensure that the validity of publicly trusted certificates used by its web server can be determined even during an extended internet outage. Which of the following should be implemented?',
+            answers: [
+              { text: 'A. Recovery agent', correct: false },
+              { text: 'B. Ocsp', correct: false },
+              { text: 'C. Crl', correct: true },
+              { text: 'D. Key escrow', correct: false }
+            ]
+            },
+            {
+            question: 'An administrator intends to configure an IPSec solution that provides ESP with integrity protection, but not confidentiality protection. Which of the following AES modes of operation would meet this integrity-only requirement?',
+            answers: [
+              { text: 'A. HMAC', correct: true },
+              { text: 'B. PCBC', correct: false },
+              { text: 'C. CBC', correct: false },
+              { text: 'D. GCM', correct: false },
+              { text: 'E. CFB', correct: false }
+            ]
+            },
+            {
+            question: 'The chief security officer (CS0) has issued a new policy that requires that all internal websites be configured for HTTPS traffic only. The network administrator has been tasked to update all internal sites without incurring additional costs. Which of the following is the best solution for the network administrator to secure each internal website?',
+            answers: [
+              { text: 'A. Use certificates signed by the company CA', correct: false },
+              { text: 'B. Use a signing certificate as a wild card certificate', correct: false },
+              { text: 'C. Use certificates signed by a public ca', correct: false },
+              { text: 'D. Use a self-signed certificate on each internal server', correct: true }
+            ]
+            },
+
+            {
+            question: 'A security program manager wants to actively test the security posture of a system. The system is not yet in production and has no uptime requirement or active user base. Which of the following methods will produce a report which shows vulnerabilities that were actually exploited?',
+            answers: [
+              { text: 'A. Peer review', correct: false },
+              { text: 'B. Component testing', correct: false },
+              { text: 'C. Penetration testing', correct: true },
+              { text: 'D. Vulnerability testing', correct: false }
+            ]
+            },
+            {
+            question: 'A new intern in the purchasing department requires read access to shared documents. Permissions are normally controlled through a group called "Purchasing", however, the purchasing group permissions allow write access. Which of the following would be the BEST course of action?',
+            answers: [
+              { text: 'A. Modify all the shared files with read only permissions for the intern.', correct: false },
+              { text: 'B. Create a new group that has only read permissions for the files.', correct: true },
+              { text: 'C. Remove all permissions for the shared files.', correct: false },
+              { text: 'D. Add the intern to the "Purchasing" group.', correct: false }
+            ]
+            },
+            {
+            question: 'A business has recently deployed laptops to all sales employees. The laptops will be used primarily from home offices and while traveling, and a high amount of wireless mobile use is expected. To protect the laptops while connected to untrusted wireless networks, which of the following would be the BEST method for reducing the risk of having the laptops compromised?',
+            answers: [
+              { text: 'A. MAC filtering', correct: false },
+              { text: 'B. Virtualization', correct: false },
+              { text: 'C. OS hardening', correct: true },
+              { text: 'D. Application white-listing', correct: false }
+            ]
+            },
+            {
+            question: 'During a data breach cleanup, it is discovered that not all of the sites involved have the necessary data wiping tools. The necessary tools are quickly distributed to the required technicians, but when should this problem BEST be revisited?',
+            answers: [
+              { text: 'A. Reporting', correct: false },
+              { text: 'B. Preparation', correct: false },
+              { text: 'C. Mitigation', correct: false },
+              { text: 'D. Lessons Learned', correct: true }
+            ]
+            },
+            {
+            question: "Joe, a technician, is working remotely with his company provided laptop at the coffee shop near his home. Joe is concerned that another patron of the coffee shop may be trying to access his laptop. Which of the following is an appropriate control to use to prevent the other patron from accessing Joe's laptop directly?",
+            answers: [
+              { text: 'A. full-disk encryption', correct: false },
+              { text: 'B. Host-based firewall', correct: true },
+              { text: 'C. Current antivirus definitions', correct: false },
+              { text: 'D. Latest OS updates', correct: false }
+            ]
+            },
+            {
+            question: 'An attacker uses a network sniffer to capture the packets of a transaction that adds $20 to a gift card. The attacker then user a function of the sniffer to push those packets back onto the network again, adding another $20 to the gift card. This can be done many times. Which of the following describes this type of attack?',
+            answers: [
+              { text: 'A. Integer overflow attack', correct: false },
+              { text: 'B. Smurf attack', correct: false },
+              { text: 'C. Replay attack', correct: true },
+              { text: 'D. Buffer overflow attack', correct: false },
+              { text: 'E. Cross-site scripting attack', correct: false }
+            ]
+            },
+
+            {
+            question: 'An organization is moving its human resources system to a cloud services provider. The company plans to continue using internal usernames and passwords with the service provider, but the security manager does not want the service provider to have a company of the passwords. Which of the following options meets all of these requirements?',
+            answers: [
+              { text: 'A. Two-factor authentication', correct: false },
+              { text: 'B. Account and password synchronization', correct: false },
+              { text: 'C. Smartcards with PINS', correct: false },
+              { text: 'D. Federated authentication', correct: true }
+            ]
+            },
+            {
+            question: 'The data backup window has expanded into the morning hours and has begun to affect production users. The main bottleneck in the process is the time it takes to replicate the backups to separate severs at the offsite data center. Which of the following uses of deduplication could be implemented to reduce the backup window?',
+            answers: [
+              { text: 'A. Implement deduplication at the network level between the two locations', correct: false },
+              { text: 'B. Implement deduplication on the storage array to reduce the amount of drive space needed', correct: true },
+              { text: 'C. Implement deduplication on the server storage to reduce the data backed up', correct: false },
+              { text: 'D. Implement deduplication on both the local and remote servers', correct: false }
+            ]
+            },
+            {
+            question: 'A penetration testing is preparing for a client engagement in which the tester must provide data that proves and validates the scanning tools results. Which of the following is the best method for collecting this information?',
+            answers: [
+              { text: "A. Set up the scanning system's firewall to permit and log all outbound connections", correct: false },
+              { text: 'B. Use a protocol analyzer to log all pertinent network traffic', correct: true },
+              { text: 'C. Configure network flow data logging on all scanning system', correct: false },
+              { text: 'D. Enable debug level logging on the scanning system and all scanning tools used.', correct: false }
+            ]
+            },
+            {
+            question: 'Which of the following best describes the initial processing phase used in mobile device forensics?',
+            answers: [
+              { text: 'A. The phone should be powered down and the battery removed to preserve the state of data on any internal or removable storage utilized by the mobile device', correct: false },
+              { text: 'B. The removable data storage cards should be processed first to prevent data alteration when examining the mobile device', correct: false },
+              { text: 'C. The mobile device should be examined first, then removable storage and lastly the phone without removable storage should be examined again', correct: false },
+              { text: 'D. The phone and storage cards should be examined as a complete unit after examining the removable storage cards separately.', correct: true }
+            ]
+            },
+            {
+            question: 'Ann a security analyst is monitoring the IDS console and noticed multiple connections from an internal host to a suspicious call back domain. Which of the following tools would aid her to decipher the network traffic?',
+            answers: [
+              { text: 'A. Vulnerability Scanner', correct: false },
+              { text: 'B. NMAP', correct: false },
+              { text: 'C. NETSTAT', correct: false },
+              { text: 'D. Packet Analyzer', correct: true }
+            ]
+            },
+            {
+            question: 'An administrator is testing the collision resistance of different hashing algorithms. Which of the following is the strongest collision resistance test?',
+            answers: [
+              { text: 'A. Find two identical messages with different hashes', correct: true },
+              { text: 'B. Find two identical messages with the same hash', correct: false },
+              { text: 'C. Find a common has between two specific messages', correct: false },
+              { text: 'D. Find a common hash between a specific message and a random message', correct: false }
+            ]
+            },
+            {
+            question: 'The SSID broadcast for a wireless router has been disabled but a network administrator notices that unauthorized users are accessing the wireless network. The administer has determined that attackers are still able to detect the presence of the wireless network despite the fact the SSID has been disabled. Which of the following would further obscure the presence of the wireless network?',
+            answers: [
+              { text: 'A. Upgrade the encryption to WPA or WPA2', correct: false },
+              { text: 'B. Create a non-zero length SSID for the wireless router', correct: false },
+              { text: 'C. Reroute wireless users to a honeypot', correct: false },
+              { text: 'D. Disable responses to a broadcast probe request', correct: true }
+            ]
+            },
+            {
+            question: 'Which of the following should be used to implement voice encryption?',
+            answers: [
+              { text: 'A. SSLv3', correct: false },
+              { text: 'B. VDSL', correct: false },
+              { text: 'C. SRTP', correct: true },
+              { text: 'D. VoIP', correct: false }
+            ]
+            },
+            {
+            question: "During an application design, the development team specifics a LDAP module for single sign-on communication with the company's access control database. This is an example of which of the following?",
+            answers: [
+              { text: 'A. Application control', correct: false },
+              { text: 'B. Data in-transit', correct: false },
+              { text: 'C. Identification', correct: false },
+              { text: 'D. Authentication', correct: true }
+            ]
+            },
+            {
+            question: 'After a merger, it was determined that several individuals could perform the tasks of a network administrator in the merged organization. Which of the following should have been performed to ensure that employees have proper access?',
+            answers: [
+              { text: 'A. Time-of-day restrictions', correct: false },
+              { text: 'B. Change management', correct: false },
+              { text: 'C. Periodic auditing of user credentials', correct: false },
+              { text: 'D. User rights and permission review', correct: true }
+            ]
+            },
+            {
+            question: 'A company exchanges information with a business partner. An annual audit of the business partner is conducted against the SLA in order to verify:',
+            answers: [
+              { text: 'A. Performance and service delivery metrics', correct: true },
+              { text: 'B. Backups are being performed and tested', correct: false },
+              { text: 'C. Data ownership is being maintained and audited', correct: false },
+              { text: 'D. Risk awareness is being adhered to and enforced', correct: false }
+            ]
+            },
+            {
+            question: 'Which of the following is the proper way to quantify the total monetary damage resulting from an exploited vulnerability?',
+            answers: [
+              { text: 'A. Calculate the ALE', correct: true },
+              { text: 'B. Calculate the ARO', correct: false },
+              { text: 'C. Calculate the MTBF', correct: false },
+              { text: 'D. Calculate the TCO', correct: false }
+            ]
+            },
+            {
+            question: 'A security administrator needs to implement a system that detects possible intrusions based upon a vendor provided list. Which of the following BEST describes this type of IDS?',
+            answers: [
+              { text: 'A. Signature based', correct: true },
+              { text: 'B. Heuristic', correct: false },
+              { text: 'C. Anomaly-based', correct: false },
+              { text: 'D. Behavior-based', correct: false }
+            ]
+            },
+            {
+            question: 'The chief Security Officer (CSO) has reported a rise in data loss but no break ins have occurred. By doing which of the following is the CSO most likely to reduce the number of incidents?',
+            answers: [
+              { text: 'A. Implement protected distribution', correct: false },
+              { text: 'B. Empty additional firewalls', correct: false },
+              { text: 'C. Conduct security awareness training', correct: true },
+              { text: 'D. Install perimeter barricades', correct: false }
+            ]
+            },
+            {
+            question: 'Having adequate lighting on the outside of a building is an example of which of the following security controls?',
+            answers: [
+              { text: 'A. Deterrent', correct: true },
+              { text: 'B. Compensating', correct: false },
+              { text: 'C. Detective', correct: false },
+              { text: 'D. Preventative', correct: false }
+            ]
+            },
+
+            {
+            question: 'During a recent audit, it was discovered that several user accounts belonging to former employees were still active and had valid VPN permissions. Which of the following would help reduce the amount of risk the organization incurs in this situation in the future?',
+            answers: [
+              { text: 'A. Time-of-day restrictions', correct: false },
+              { text: 'B. User access reviews', correct: true },
+              { text: 'C. Group-based privileges', correct: false },
+              { text: 'D. Change management policies', correct: false }
+            ]
+            },
+            {
+            question: 'An organization is working with a cloud services provider to transition critical business applications to a hybrid cloud environment. The organization retains sensitive customer data and wants to ensure the provider has sufficient administrative and logical controls in place to protect its data. In which of the following documents would this concern MOST likely be addressed?',
+            answers: [
+              { text: 'A. Service level agreement', correct: true },
+              { text: 'B. Interconnection security agreement', correct: false },
+              { text: 'C. Non-disclosure agreement', correct: false },
+              { text: 'D. Business process analysis', correct: false }
+            ]
+            },
+            {
+            question: 'A security administrator wants to implement a company-wide policy to empower data owners to manage and enforce access control rules on various resources. Which of the following should be implemented?',
+            answers: [
+              { text: 'A. Mandatory access control', correct: false },
+              { text: 'B. Discretionary access control', correct: true },
+              { text: 'C. Role based access control', correct: false },
+              { text: 'D. Rule-based access control', correct: false }
+            ]
+            },
+
+            {
+            question: 'Which of the following BEST describes an attack where communications between two parties are intercepted and forwarded to each party with neither party being aware of the interception and potential modification to the communications?',
+            answers: [
+              { text: 'A. Spear phishing', correct: false },
+              { text: 'B. Main-in-the-middle', correct: true },
+              { text: 'C. URL hijacking', correct: false },
+              { text: 'D. Transitive access', correct: false }
+            ]
+            },
+            {
+            question: 'A technician needs to implement a system which will properly authenticate users by their username and password only when the users are logging in from a computer in the office building. Any attempt to authenticate from a location other than the office building should be rejected. Which of the following MUST the technician implement?',
+            answers: [
+              { text: 'A. Dual factor authentication', correct: true },
+              { text: 'B. Transitive authentication', correct: false },
+              { text: 'C. Single factor authentication', correct: false },
+              { text: 'D. Biometric authentication', correct: false }
+            ]
+            },
+            {
+            question: "After correctly configuring a new wireless enabled thermostat to control the temperature of the company's meeting room, Joe, a network administrator determines that the thermostat is not connecting to the internet-based control system. Joe verifies that the thermostat received the expected network parameters and it is associated with the AP. Additionally, the other wireless mobile devices connected to the same wireless network are functioning properly. The network administrator verified that the thermostat works when tested at his residence. Which of the following is the MOST likely reason the thermostat is not connecting to the internet?",
+            answers: [
+              { text: 'A. The company implements a captive portal', correct: true },
+              { text: 'B. The thermostat is using the incorrect encryption algorithm', correct: false },
+              { text: 'C. the WPA2 shared likely is incorrect', correct: false },
+              { text: "D. The company's DHCP server scope is full", correct: false }
+            ]
+            },
+            {
+            question: 'A Chief Security Officer (CSO) has been unsuccessful in attempts to access the website for a potential partner (www.example.net). Which of the following rules is preventing the CSO from accessing the site? Blocked sites: *.nonews.com, *.rumorhasit.net, *.mars?',
+            answers: [
+              { text: 'A. Rule 1: deny from inside to outside source any destination any service smtp', correct: false },
+              { text: 'B. Rule 2: deny from inside to outside source any destination any service ping', correct: false },
+              { text: 'C. Rule 3: deny from inside to outside source any destination {blocked sites} service http-https', correct: false },
+              { text: 'D. Rule 4: deny from any to any source any destination any service any', correct: true }
+            ]
+            },
+            {
+            question: 'Malware that changes its binary pattern on specific dates at specific times to avoid detection is known as a (n):',
+            answers: [
+              { text: 'A. armored virus', correct: false },
+              { text: 'B. logic bomb', correct: false },
+              { text: 'C. polymorphic virus', correct: true },
+              { text: 'D. Trojan', correct: false }
+            ]
+            },
+            {
+            question: 'A company is planning to encrypt the files in several sensitive directories of a file server with a symmetric key. Which of the following could be used?',
+            answers: [
+              { text: 'A. RSA', correct: false },
+              { text: 'B. TwoFish', correct: true },
+              { text: 'C. Diffie-Helman', correct: false },
+              { text: 'D. NTLMv2', correct: false },
+              { text: 'E. RIPEMD', correct: false }
+            ]
+            },
+
+            {
+            question: 'Which of the following is a document that contains detailed information about actions that include how something will be done, when the actions will be performed, and penalties for failure?',
+            answers: [
+              { text: 'A. MOU', correct: false },
+              { text: 'B. ISA', correct: false },
+              { text: 'C. BPA', correct: false },
+              { text: 'D. SLA', correct: true }
+            ]
+            },
+            {
+            question: 'Which of the following are MOST susceptible to birthday attacks?',
+            answers: [
+              { text: 'A. Hashed passwords', correct: true },
+              { text: 'B. Digital certificates', correct: false },
+              { text: 'C. Encryption passwords', correct: false },
+              { text: 'D. One time passwords', correct: false }
+            ]
+            },
+            {
+            question: 'Joe a computer forensic technician responds to an active compromise of a database server. Joe first collects information in memory, then collects network traffic and finally conducts an image of the hard drive. Which of the following procedures did Joe follow?',
+            answers: [
+              { text: 'A. Order of volatility', correct: true },
+              { text: 'B. Chain of custody', correct: false },
+              { text: 'C. Recovery procedure', correct: false },
+              { text: 'D. Incident isolation', correct: false }
+            ]
+            },
+
+            {
+            question: 'A system administrator wants to implement an internal communication system that will allow employees to send encrypted messages to each other. The system must also support non- repudiation. Which of the following implements all these requirements?',
+            answers: [
+              { text: 'A. Bcrypt', correct: false },
+              { text: 'B. Blowfish', correct: false },
+              { text: 'C. PGP', correct: true },
+              { text: 'D. SHA', correct: false }
+            ]
+            },
+            {
+            question: '',
+            answers: [
+              { text: '', correct: false },
+              { text: '', correct: true },
+              { text: '', correct: false },
+              { text: '', correct: false }
+            ]
+            },
+            {
+            question: '',
+            answers: [
+              { text: '', correct: false },
+              { text: '', correct: true },
+              { text: '', correct: false },
+              { text: '', correct: false }
+            ]
+            },
+
+            {
+            question: '',
+            answers: [
+              { text: '', correct: false },
+              { text: '', correct: true },
+              { text: '', correct: false },
+              { text: '', correct: false }
+            ]
+            },
+            {
+            question: '',
+            answers: [
+              { text: '', correct: false },
+              { text: '', correct: true },
+              { text: '', correct: false },
+              { text: '', correct: false }
+            ]
+            },
+            {
+            question: '',
+            answers: [
+              { text: '', correct: false },
+              { text: '', correct: true },
+              { text: '', correct: false },
+              { text: '', correct: false }
+            ]
+            },
+            {
+            question: '',
+            answers: [
+              { text: '', correct: false },
+              { text: '', correct: true },
+              { text: '', correct: false },
+              { text: '', correct: false }
+            ]
+            },
+            {
+            question: '',
+            answers: [
+              { text: '', correct: false },
+              { text: '', correct: true },
+              { text: '', correct: false },
+              { text: '', correct: false }
+            ]
+            },
+            {
+            question: '',
+            answers: [
+              { text: '', correct: false },
+              { text: '', correct: true },
+              { text: '', correct: false },
+              { text: '', correct: false }
+            ]
+            },
+
+            {
+            question: '',
+            answers: [
+              { text: '', correct: false },
+              { text: '', correct: true },
+              { text: '', correct: false },
+              { text: '', correct: false }
+            ]
+            },
+            {
+            question: '',
+            answers: [
+              { text: '', correct: false },
+              { text: '', correct: true },
+              { text: '', correct: false },
+              { text: '', correct: false }
+            ]
+            },
+            {
+            question: '',
+            answers: [
+              { text: '', correct: false },
+              { text: '', correct: true },
+              { text: '', correct: false },
+              { text: '', correct: false }
+            ]
+            },
+
+            {
+            question: '',
+            answers: [
+              { text: '', correct: false },
+              { text: '', correct: true },
+              { text: '', correct: false },
+              { text: '', correct: false }
+            ]
+            },
+            {
+            question: '',
+            answers: [
+              { text: '', correct: false },
+              { text: '', correct: true },
+              { text: '', correct: false },
+              { text: '', correct: false }
+            ]
+            },
+            {
+            question: '',
+            answers: [
+              { text: '', correct: false },
+              { text: '', correct: true },
+              { text: '', correct: false },
+              { text: '', correct: false }
+            ]
+            },
+
+            {
+            question: '',
+            answers: [
+              { text: '', correct: false },
+              { text: '', correct: true },
+              { text: '', correct: false },
+              { text: '', correct: false }
+            ]
+            },
+            {
+            question: '',
+            answers: [
+              { text: '', correct: false },
+              { text: '', correct: true },
+              { text: '', correct: false },
+              { text: '', correct: false }
+            ]
+            },
+            {
+            question: '',
+            answers: [
+              { text: '', correct: false },
+              { text: '', correct: true },
+              { text: '', correct: false },
+              { text: '', correct: false }
+            ]
+            },
+            {
+            question: '',
+            answers: [
+              { text: '', correct: false },
+              { text: '', correct: true },
+              { text: '', correct: false },
+              { text: '', correct: false }
+            ]
+            },
+            {
+            question: '',
+            answers: [
+              { text: '', correct: false },
+              { text: '', correct: true },
+              { text: '', correct: false },
+              { text: '', correct: false }
+            ]
+            },
+            {
+            question: '',
+            answers: [
+              { text: '', correct: false },
+              { text: '', correct: true },
+              { text: '', correct: false },
+              { text: '', correct: false }
+            ]
+            },
+
+            {
+            question: '',
+            answers: [
+              { text: '', correct: false },
+              { text: '', correct: true },
+              { text: '', correct: false },
+              { text: '', correct: false }
+            ]
+            },
+            {
+            question: '',
+            answers: [
+              { text: '', correct: false },
+              { text: '', correct: true },
+              { text: '', correct: false },
+              { text: '', correct: false }
+            ]
+            },
+            {
+            question: '',
+            answers: [
+              { text: '', correct: false },
+              { text: '', correct: true },
+              { text: '', correct: false },
+              { text: '', correct: false }
+            ]
+            },
+
+            {
+            question: '',
+            answers: [
+              { text: '', correct: false },
+              { text: '', correct: true },
+              { text: '', correct: false },
+              { text: '', correct: false }
+            ]
+            },
+            {
+            question: '',
+            answers: [
+              { text: '', correct: false },
+              { text: '', correct: true },
+              { text: '', correct: false },
+              { text: '', correct: false }
+            ]
+            },
+            {
+            question: '',
+            answers: [
+              { text: '', correct: false },
+              { text: '', correct: true },
+              { text: '', correct: false },
+              { text: '', correct: false }
+            ]
+            },
+
+            {
+            question: '',
+            answers: [
+              { text: '', correct: false },
+              { text: '', correct: true },
+              { text: '', correct: false },
+              { text: '', correct: false }
+            ]
+            },
+            {
+            question: '',
+            answers: [
+              { text: '', correct: false },
+              { text: '', correct: true },
+              { text: '', correct: false },
+              { text: '', correct: false }
+            ]
+            },
+            {
+            question: '',
+            answers: [
+              { text: '', correct: false },
+              { text: '', correct: true },
+              { text: '', correct: false },
+              { text: '', correct: false }
+            ]
+            },
+            {
+            question: '',
+            answers: [
+              { text: '', correct: false },
+              { text: '', correct: true },
+              { text: '', correct: false },
+              { text: '', correct: false }
+            ]
+            },
+            {
+            question: '',
+            answers: [
+              { text: '', correct: false },
+              { text: '', correct: true },
+              { text: '', correct: false },
+              { text: '', correct: false }
+            ]
+            },
+            {
+            question: '',
+            answers: [
+              { text: '', correct: false },
+              { text: '', correct: true },
+              { text: '', correct: false },
+              { text: '', correct: false }
+            ]
+            },
+
+            {
+            question: '',
+            answers: [
+              { text: '', correct: false },
+              { text: '', correct: true },
+              { text: '', correct: false },
+              { text: '', correct: false }
+            ]
+            },
+            {
+            question: '',
+            answers: [
+              { text: '', correct: false },
+              { text: '', correct: true },
+              { text: '', correct: false },
+              { text: '', correct: false }
+            ]
+            },
+            {
+            question: '',
+            answers: [
+              { text: '', correct: false },
+              { text: '', correct: true },
+              { text: '', correct: false },
+              { text: '', correct: false }
+            ]
+            },
+
+            {
+            question: '',
+            answers: [
+              { text: '', correct: false },
+              { text: '', correct: true },
+              { text: '', correct: false },
+              { text: '', correct: false }
+            ]
+            },
+            {
+            question: '',
+            answers: [
+              { text: '', correct: false },
+              { text: '', correct: true },
+              { text: '', correct: false },
+              { text: '', correct: false }
+            ]
+            },
+            {
+            question: '',
+            answers: [
+              { text: '', correct: false },
+              { text: '', correct: true },
+              { text: '', correct: false },
+              { text: '', correct: false }
+            ]
+            },
+
+            {
+            question: '',
+            answers: [
+              { text: '', correct: false },
+              { text: '', correct: true },
+              { text: '', correct: false },
+              { text: '', correct: false }
+            ]
+            },
+            {
+            question: '',
+            answers: [
+              { text: '', correct: false },
+              { text: '', correct: true },
+              { text: '', correct: false },
+              { text: '', correct: false }
+            ]
+            },
+            {
+            question: '',
+            answers: [
+              { text: '', correct: false },
+              { text: '', correct: true },
+              { text: '', correct: false },
+              { text: '', correct: false }
+            ]
+            },
+            {
+            question: '',
+            answers: [
+              { text: '', correct: false },
+              { text: '', correct: true },
+              { text: '', correct: false },
+              { text: '', correct: false }
+            ]
+            },
+            {
+            question: '',
+            answers: [
+              { text: '', correct: false },
+              { text: '', correct: true },
+              { text: '', correct: false },
+              { text: '', correct: false }
+            ]
+            },
+            {
+            question: '',
+            answers: [
+              { text: '', correct: false },
+              { text: '', correct: true },
+              { text: '', correct: false },
+              { text: '', correct: false }
+            ]
+            },
+
+            {
+            question: '',
+            answers: [
+              { text: '', correct: false },
+              { text: '', correct: true },
+              { text: '', correct: false },
+              { text: '', correct: false }
+            ]
+            },
+            {
+            question: '',
+            answers: [
+              { text: '', correct: false },
+              { text: '', correct: true },
+              { text: '', correct: false },
+              { text: '', correct: false }
+            ]
+            },
+            {
+            question: '',
+            answers: [
+              { text: '', correct: false },
+              { text: '', correct: true },
+              { text: '', correct: false },
+              { text: '', correct: false }
+            ]
+            },
+
+            {
+            question: '',
+            answers: [
+              { text: '', correct: false },
+              { text: '', correct: true },
+              { text: '', correct: false },
+              { text: '', correct: false }
+            ]
+            },
+            {
+            question: '',
+            answers: [
+              { text: '', correct: false },
+              { text: '', correct: true },
+              { text: '', correct: false },
+              { text: '', correct: false }
+            ]
+            },
+            {
+            question: '',
+            answers: [
+              { text: '', correct: false },
+              { text: '', correct: true },
+              { text: '', correct: false },
+              { text: '', correct: false }
+            ]
+            },
+
+            {
+            question: '',
+            answers: [
+              { text: '', correct: false },
+              { text: '', correct: true },
+              { text: '', correct: false },
+              { text: '', correct: false }
+            ]
+            },
+            {
+            question: '',
+            answers: [
+              { text: '', correct: false },
+              { text: '', correct: true },
+              { text: '', correct: false },
+              { text: '', correct: false }
+            ]
+            },
+          ]
+    </script>
+  </div>
+</body>
+</html>
