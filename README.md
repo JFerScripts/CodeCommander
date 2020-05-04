@@ -1,2 +1,2 @@
 # CodeCommander
-My FIrst coding projects
+My First coding projects
